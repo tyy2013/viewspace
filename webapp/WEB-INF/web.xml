@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <description>景区旅游网站</description>
+ <display-name>viewspace</display-name>
+ <context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>classpath:viewspace.xml</param-value>
+ </context-param>
+ <filter>
+  <filter-name>hibernateFilter</filter-name>
+  <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+ </filter>
+ <filter>
+  <filter-name>viewSpaceFilter</filter-name>
+  <filter-class>com.smart.web.ViewSpaceFilter</filter-class>
+ </filter>
+ <filter>
+  <filter-name>encodingFilter</filter-name>
+  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  <init-param>
+   <param-name>encoding</param-name>
+   <param-value>UTF-8</param-value>
+  </init-param>
+  <init-param>
+   <param-name>forceEncoding</param-name>
+   <param-value>true</param-value>
+  </init-param>
+ </filter>
+ <filter>
+  <filter-name>HiddenHttpMethodFilter</filter-name>
+  <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>hibernateFilter</filter-name>
+  <url-pattern>*.html</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>viewSpaceFilter</filter-name>
+  <url-pattern>*.html</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>viewSpaceFilter</filter-name>
+  <url-pattern>*.jsp</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>encodingFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>encodingFilter</filter-name>
+  <url-pattern>*.jsp</url-pattern>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>HiddenHttpMethodFilter</filter-name>
+  <servlet-name>viewspace</servlet-name>
+ </filter-mapping>
+ <!-- Start the Spring listener that loads the application context
+       when the Web app starts up. It assumes the context is named
+       WEB-INF/applicationContext.xml unless you set a context param
+       called contextConfigLocation to override it. -->
+ <listener>
+  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+ <!-- Lets the bean definition file specify scopes of request 
+       and session. -->
+ <listener>
+  <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+ </listener>
+ <servlet>
+  <servlet-name>viewspace</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <load-on-startup>3</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>viewspace</servlet-name>
+  <url-pattern>*.do</url-pattern>
+ </servlet-mapping>
+ <session-config>
+  <session-timeout>60</session-timeout>
+ </session-config>
+ <welcome-file-list>
+  <welcome-file>/index.jsp</welcome-file>
+ </welcome-file-list>
+</web-app>
