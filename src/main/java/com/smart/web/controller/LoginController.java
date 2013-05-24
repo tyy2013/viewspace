@@ -55,8 +55,9 @@ public class LoginController extends BaseController {
             user.setLastVisit(new Date());
             userService.saveLoginInfo(user);
 			setSessionUser(request,user);
-			return new ModelAndView("success");
-			//return new ModelAndView("/listUserViewSpaces");
+			//return new ModelAndView("success");
+			return new ModelAndView("redirect:/index.do");
+
 		}
 	}
 
