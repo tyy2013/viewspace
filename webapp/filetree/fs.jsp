@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,54 +63,48 @@
 			
 			function openFile(file) {
 			    // do something with file
+			    alert(file);
+			    //window.open("<c:url value="/download.do"/>?filepath="+file);
+			    
+			    window.location.href="<c:url value="/download.do"/>?filepath="+file;
 			}
 			
 			function downloadFile(file) {
 				alert(file);
-				 $.post("d.jsp",{filepath:file},function(data,status){
-					    //alert("Data: " + data + "\nStatus: " + status);
-					  });
+				
+				$.get("t.jsp?filepath="+file,function(data,status){
+				    //alert("Data: " + data + "\nStatus: " + status);
+				});
+				// $.post("d.jsp",{filepath:file},function(data,status){});
 			}
+			/* function downloadFile(url){
+				  var elemIF = document.createElement("iframe");
+				  elemIF.src = url;
+				  elemIF.style.display = "none";
+				  document.body.appendChild(elemIF);
+				} */
 			
 			$(document).ready(function() {
 
 				$('#fileTreeDemo_1').fileTree({
-					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
+					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
 					script : 'connectors/jqueryFileTree.jsp'
 				}, function(file) {
-					downloadFile(file);
+					openFile(file);
 				});
+
+
 
 				$('#fileTreeDemo_2').fileTree({
-					root : '/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
+					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
 					script : 'connectors/jqueryFileTree.jsp',
-					folderEvent : 'click',
-					expandSpeed : 750,
-					collapseSpeed : 750,
-					multiFolder : false
-				}, function(file) {
-					alert(file);
-				});
-
-				$('#fileTreeDemo_3').fileTree({
-					root : '/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
-					script : 'connectors/jqueryFileTree.jsp',
-					folderEvent : 'click',
+					folderEvent : 'dblclick',
 					expandSpeed : 750,
 					collapseSpeed : 750,
 					expandEasing : 'easeOutBounce',
 					collapseEasing : 'easeOutBounce',
-					loadMessage : 'Loading...'
-				}, function(file) {
-					alert(file);
-				});
-
-				$('#fileTreeDemo_4').fileTree({
-					root : '/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
-					script : 'connectors/jqueryFileTree.jsp',
-					folderEvent : 'dblclick',
-					expandSpeed : 1,
-					collapseSpeed : 1
+					loadMessage : 'Loading...',
+					multiFolder : false
 				}, function(file) {
 					alert(file);
 				});
@@ -124,11 +120,7 @@
 		<p>
 			Feel free to view the source code of this page to see how the file tree is being implemented.
 		</p>
-		
-		<p>
-			<a href="http://abeautifulsite.net/2008/03/jquery-file-tree/">Back to the project page</a>
-		</p>
-		
+		<form action="<c:url value="/download.do"/>" method="get" />
 		<div class="example">
 			<h2>Default options</h2>
 			<div id="fileTreeDemo_1" class="demo"></div>

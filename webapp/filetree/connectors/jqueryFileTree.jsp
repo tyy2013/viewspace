@@ -1,5 +1,6 @@
 <%@ page
 	import="java.io.File,java.io.FilenameFilter,java.util.Arrays"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 /**
   * jQuery File Tree JSP Connector
@@ -7,6 +8,7 @@
   * Copyright 2008 Joshua Gould
   * 21 April 2008
 */	
+	String webContextPath = "viewspace";//set same as the web project context path
     String dir = request.getParameter("dir");
     if (dir == null) {
     	return;
@@ -40,9 +42,12 @@
 		    if (!new File(dir, file).isDirectory()) {
 				int dotIndex = file.lastIndexOf('.');
 				String ext = dotIndex > 0 ? file.substring(dotIndex + 1) : "";
-				out.print("<li class=\"file ext_" + ext + "\"><a href=\"#\" rel=\"" + dir + file + "\">"
-					+ file + "</a></li>");
-		    	}
+				out.print("<li class=\"file ext_" + ext + "\"><a href=\"#\" rel=\"" + dir + file + "\">"+ file + "</a></li>");
+		    	//String outString = "<li class=\"file ext_" + ext + "\"><a href=\"/"+ dir.substring(dir.lastIndexOf(webContextPath))+
+				//		file+"\" rel=\"" + dir + file + "\">"+ file + "</a></li>";
+				//out.print(outString);
+				//System.out.println(outString);	
+		    }
 		}
 		out.print("</ul>");
     }

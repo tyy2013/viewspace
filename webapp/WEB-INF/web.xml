@@ -56,6 +56,7 @@
   <filter-name>HiddenHttpMethodFilter</filter-name>
   <servlet-name>viewspace</servlet-name>
  </filter-mapping>
+
  <!-- Start the Spring listener that loads the application context
        when the Web app starts up. It assumes the context is named
        WEB-INF/applicationContext.xml unless you set a context param

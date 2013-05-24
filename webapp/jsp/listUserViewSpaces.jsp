@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-		<title>风景区列表</title>
+		<title>光纤通信技术和网络国家重点实验室</title>
 		<%@ include file="/include/head4.jsp"%>
 </head>
 <body>

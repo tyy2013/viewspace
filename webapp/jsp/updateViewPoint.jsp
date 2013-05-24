@@ -64,7 +64,7 @@
 	<c:if test="${!empty viewPoint.imgFile}">
 		<tr>
 			<td width="20%">景点图片：</td>
-			<td width="80%"><img src="<c:url value="/static/uploads/${viewPoint.imgFile}"/>"></img></td>
+			<td width="80%"><a href="<c:url value="/uploads/${viewPoint.imgFile}"/>">${viewPoint.imgFile}</a><%-- <img src="<c:url value="/uploads/${viewPoint.imgFile}"/>"></img> --%></td>
 		</tr>
 		<tr>
 		   <td width="20%">重新上传：</td>

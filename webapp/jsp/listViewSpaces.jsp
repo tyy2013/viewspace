@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>风景区列表</title>
+<title>光纤通信技术和网络国家重点实验室</title>
 <%@ include file="/include/head4.jsp"%>
 </head>
 <body>
@@ -23,8 +23,8 @@
 
 				<!-- Content unit - One column -->
 				<div class="column1-unit">
-					<h1>Flexible and robust template</h1>
-					<h3>Now substantially improved and simplified</h3>
+<!-- 					<h1>Flexible and robust template</h1> -->
+<!-- 					<h3>Now substantially improved and simplified</h3> -->
 					<p>光纤通信技术和网络国家重点实验室于2008年4月由国家科技部批准筹建，
 						是首批筹建的企业国家重点实验室之一，实验室于2010年7月通过国家验收。</p>
 				</div>
@@ -35,7 +35,7 @@
 				<!-- Content unit - One column -->
 				<div class="column1-unit">
 					<h1>实验室新闻</h1>
-					<p>Many people ask me what tools I use. Here is the list:</p>
+					
 					<ul>
 						<li><a href=#>光纤通信技术和网络国家重点实验室通过验收</a></li>
 						<li><a href=#>超高速超大容量超长距离光传输基础研究”项目获国家973计划立项</a></li>
@@ -43,9 +43,7 @@
 				</div>
 				<hr class="clear-contentunit" />
 	<div class="column1-unit">
-	<a href="<c:url value="/filemanager/index.jsp"/>">
-		FileExplorer
-	</a>
+
 	</div>
 			</div>
 

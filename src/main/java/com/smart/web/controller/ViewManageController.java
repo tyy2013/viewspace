@@ -1,13 +1,14 @@
 package com.smart.web.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.BufferedInputStream;
+import java.io.*;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import com.smart.service.exception.IpCommentedException;
 public class ViewManageController extends BaseController{
 	@Autowired
 	private ViewSpaceService viewSpaceService;
+	private static final String UPLOADDIR = "uploads/";
 
 	// 显示所有景区的列表
 	@RequestMapping(value = "/index", method = RequestMethod.GET)  
@@ -149,7 +151,7 @@ public class ViewManageController extends BaseController{
 		ViewPoint vp = new ViewPoint();
 		vp.getViewSpace().setSpaceId(spaceId);
 		vp.setPointName(pointName);
-		vp.setTicketPrice(ticketPrice);
+		vp.setTicketPrice(ticketPrice==null? 0:ticketPrice);
 		vp.setDescription(description);
 		try {
 			List<MultipartFile> files = request.getFiles("imgFile");
@@ -241,5 +243,39 @@ public class ViewManageController extends BaseController{
 		viewSpaceService.updateViewPoint(vp);
         String targetUrl = "/vs/" + vp.getViewSpace().getSpaceId()  + "/edit.do";
         return "redirect:"+targetUrl;
+	}
+	
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public void download(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");//只对post中参数编码有效，而get中的参数是在URI中，默认为ISO-8859-1
+
+		String filePath =request.getParameter("filepath");
+		filePath = new String(filePath.getBytes("ISO-8859-1"),"utf-8");//将默认URI中的编码转换成需要的编码
+		String fileName = filePath.substring(filePath.lastIndexOf("/")+1);
+		System.out.println(filePath);
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+
+		String ctxPath = request.getSession().getServletContext()
+				.getRealPath("/")
+				+ ViewManageController.UPLOADDIR;
+		String downLoadPath = ctxPath + fileName;
+
+		long fileLength = new File(filePath).length();
+		response.setContentType("text/html;charset=UTF-8");
+		response.setHeader("Content-disposition", "attachment; filename="
+				+ new String(fileName.getBytes("utf-8"), "ISO-8859-1"));
+		response.setHeader("Content-Length", String.valueOf(fileLength));
+
+		bis = new BufferedInputStream(new FileInputStream(filePath));
+		bos = new BufferedOutputStream(response.getOutputStream());
+		byte[] buff = new byte[2048];
+		int bytesRead;
+		while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+			bos.write(buff, 0, bytesRead);
+		}
+		bis.close();
+		bos.close();
 	}
 }

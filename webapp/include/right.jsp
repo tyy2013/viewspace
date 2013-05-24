@@ -56,14 +56,5 @@
 		</p>
 	</div>
 
-	<!-- Subcontent unit -->
-	<div class="subcontent-unit-border">
-		<div class="round-border-topleft"></div>
-		<div class="round-border-topright"></div>
-		<h1>Layout Options</h1>
-		<p>Multiflex-3 has five layout styles, for 1-column, 2-column and
-			3-column pages.</p>
-		<p>Multiflex-3 also has seven header layout styles.</p>
-		<p>See links in navigation bar for more details.</p>
-	</div>
+	
 </div>
