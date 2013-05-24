@@ -224,7 +224,7 @@ public class ViewManageController extends BaseController{
 					String srcFileName = files.get(i).getOriginalFilename();
 					String fileExt = srcFileName.substring(srcFileName
 							.lastIndexOf('.'));
-					String fileName = getNewFileName() + fileExt;
+					String fileName = srcFileName;//getNewFileName() + fileExt;
 					String fullFilePath = request.getSession()
 							.getServletContext().getRealPath(
 									"/uploads/" + fileName);
