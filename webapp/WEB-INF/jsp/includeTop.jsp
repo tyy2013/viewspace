@@ -16,5 +16,3 @@
    <a href="<c:url value="/login.jsp"/>">登录</a>&nbsp;&nbsp;
 </c:if>
 </div>
-
- 
