@@ -9,6 +9,7 @@ import com.smart.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smart.domain.User;
@@ -39,7 +40,7 @@ public class LoginController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-    @RequestMapping("/doLogin")
+    @RequestMapping(value="/doLogin",method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
@@ -55,8 +56,12 @@ public class LoginController extends BaseController {
             user.setLastVisit(new Date());
             userService.saveLoginInfo(user);
 			setSessionUser(request,user);
+			String toUrl=(String) request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
+			if(toUrl!=null)
+				return new ModelAndView(toUrl);
 			//return new ModelAndView("success");
-			return new ModelAndView("redirect:/index.do");
+			else
+				return new ModelAndView("redirect:/index.do");
 
 		}
 	}

@@ -11,9 +11,10 @@
 		<div class="round-border-topright"></div>
 		<c:if test="${!empty USER_CONTEXT.userName}">
 			<h1>用户</h1>
-			<p>${USER_CONTEXT.userName},欢迎您的到来,
+			<p><span  >${USER_CONTEXT.userName}</span>,欢迎您的到来<br/>
 			<a href="<c:url value="/login/doLogout.do"/>">注销</a>&nbsp;&nbsp;
 						   <a href="<c:url value="/vs/index.do"/>">管理景区</a>
+			</p>
 		</c:if>
 		<c:if test="${empty USER_CONTEXT.userName}">
 			<h1>Login</h1>
@@ -26,13 +27,11 @@
 						<p>
 							<label class="top" for="username_2">User:</label><br> <input
 								type="text" value=""
-								onkeypress="return webLoginEnter(document.loginfrm.password);"
 								class="field" tabindex="1" id="userName" name="userName">
 						</p>
 						<p>
 							<label class="top" for="password_2">Password:</label><br> <input
 								type="password" value=""
-								onkeypress="return webLoginEnter(document.loginfrm.cmdweblogin);"
 								class="field" tabindex="2" id="password" name="password">
 						</p>
 						<p>
@@ -53,7 +52,7 @@
 				</form>
 			</div>
 		</c:if>
-		</p>
+		
 	</div>
 
 	

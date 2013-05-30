@@ -56,7 +56,7 @@
 		<!-- B. MAIN -->
 		<div class="main">
 
-			<%@ include file="/include/left.jsp"%>
+			<%@ include file="/include/navigation.jsp"%>
 
 			<!-- B.2 MAIN CONTENT -->
 			<div class="main-content">
@@ -161,7 +161,7 @@
 
 			</div>
 
-			<%@ include file="/include/right.jsp"%>
+			
 		</div>
 		<%@ include file="/include/footer.jsp"%>
 	</div>

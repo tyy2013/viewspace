@@ -15,7 +15,7 @@
 		 
 		 <!-- B. MAIN -->
     	<div class="main">
-    	<%@ include file="/include/left.jsp" %>
+    	<%@ include file="/include/navigation.jsp" %>
     	
     	<div class="main-content">
     	<h1 class="pagetitle">管理页面</h1>
@@ -56,7 +56,6 @@
 		</table>
 		</div>
 		</div>
-		<%@ include file="/include/right.jsp" %>
 		</div>
 		<%@ include file="/include/footer.jsp" %>
 	</div>
