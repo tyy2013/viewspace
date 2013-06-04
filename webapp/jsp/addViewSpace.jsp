@@ -4,52 +4,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>添加景区</title>
+<title>添加空间</title>
 <%@ include file="/include/head4.jsp"%>
-<script>
-
-
-	   function mySubmit(){
-	      with(document){
-	         var spaceName = getElementById("spaceName");
-	         if(spaceName.value == null || spaceName.value.length ==0){
-	            alert("景区名称不能为空，请填上.");
-	            spaceName.focus();
-	            return false;
-	         }else if(spaceName.value.length > 50){
-	            alert("景区名称最大长度不能超过50个字符，请调整.");
-	            spaceName.focus();
-	            return false;
-	         }
-	          
-	         var address = getElementById("address");
-	         if(address.value == null || address.value.length==0){
-	            alert("景区地址不能为空，请填上.");
-	            address.focus();
-	            return false;
-	         }else if(address.value.length > 50){
-	            alert("景区名称最大长度不能超过150个字符，请调整.");
-	            address.focus();
-	            return false;
-	         }
-	         
-	         var website = getElementById("website");
-	         if(website.value != null){
-	            if(website.value.length > 100){
-	               alert("网址的长度不能超过100个字符。");
-	               website.focus();
-	               return false;
-	            }else if(website.value.toUpperCase().indexOf("HTTP://") != 0){
-				   alert("网址必须以http://开头。");
-				   website.focus();
-	               return false;
-				}
-	         }    
-	         return true;
-	      }
-	      
-	   }
-	</script>
 </head>
 <body>
 	<!-- Main Page Container -->
@@ -62,36 +18,7 @@
 
 			<!-- B.2 MAIN CONTENT -->
 			<div class="main-content">
-<form action="${context}/vs/save.do" method="post">
-<table border="1px" width="100%">
-	<tr>
-		<td width="20%">景区名称：</td>
-		<td width="80%"><input type="text" name="spaceName" style="width:100%"/></td>
-	</tr>
-	<tr>
-		<td width="20%">地址：</td>
-		<td width="80%"><input type="text" name="address" style="width:100%"/></td>
-	</tr>
-	<tr>
-		<td width="20%">网址：</td>
-		<td width="80%"><input type="text" name="website" style="width:100%"/></td>
-	</tr>
-	<tr>
-		<td width="20%">简介：</td>
-		<td width="80%">
-		<input type="text" name="description" style="width:100%"/>
-		
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">
-		   <input type="submit" value="保存">
-		   <input type="reset" value="重置">
-		   <input type="hidden" name="_method" value="PUT">
-		</td>
-	</tr>
-</table>
-</form>
+				<%@ include file="component/editViewSpace.jsp"%>
 			</div>
 
 			

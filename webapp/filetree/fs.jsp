@@ -42,7 +42,7 @@
 			
 			.demo {
 				width: 500px;
-				height: 400px;
+				height: 600px;
 				border-top: solid 1px #BBB;
 				border-left: solid 1px #BBB;
 				border-bottom: solid 1px #FFF;

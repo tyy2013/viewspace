@@ -157,12 +157,12 @@ public class ViewManageController extends BaseController{
 	@RequestMapping(value = "/vp/save", method = RequestMethod.POST)
 	public String addViewPoint(MultipartHttpServletRequest request, @RequestParam("spaceId") int spaceId,
 			@RequestParam("pointName") String pointName,
-			@RequestParam("ticketPrice") Float ticketPrice,
+			@RequestParam("ticketPrice") String ticketPrice,
 			@RequestParam("description") String description) {
 		ViewPoint vp = new ViewPoint();
 		vp.getViewSpace().setSpaceId(spaceId);
 		vp.setPointName(pointName);
-		vp.setTicketPrice(ticketPrice==null? 0:ticketPrice);
+		vp.setTicketPrice(ticketPrice);
 		vp.setDescription(description);
 		try {
 			List<MultipartFile> files = request.getFiles("imgFile");
@@ -221,7 +221,7 @@ public class ViewManageController extends BaseController{
 	public String updateViewPoint(@PathVariable Integer id,MultipartHttpServletRequest request,
 		    @RequestParam("spaceId") int spaceId,
 			@RequestParam("pointName") String pointName,
-			@RequestParam("ticketPrice") float ticketPrice,
+			@RequestParam("ticketPrice") String ticketPrice,
 			@RequestParam("description") String description) {
 		ViewPoint vp = new ViewPoint();
 		vp.setPointId(id);

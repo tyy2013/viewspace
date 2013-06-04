@@ -10,29 +10,26 @@
                             
 		<c:if test="${!empty USER_CONTEXT.userName}">
 			<h1 class="first">用户</h1>
+			
+			<div class="manage">
 			<dl class="nav3-nobullet">
 			
 			<dt>	
 				<span style="color:#0080FF;font-size:larger;font-weight:bold;">${USER_CONTEXT.userName},欢迎您的到来</span>
 			</dt>
 			<dt>
-				<div class="manage">
 					<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />
-				</div>
 			</dt>
-			<dt>
-				<div class="manage">
+			<dt>		
 					<input type="button" onclick="window.location.href='<c:url value="/vs/index.do"/>'" name="contenManage" class="button" value="内容管理" />
-				</div>
 			</dt>
-			<dt>
-				<div class="manage">
+			<dt>		
 					<input type="button" onclick="window.location.href='<c:url value="/jsp/shareFile.jsp"/>'" name="fileManage" class="button" value="文件管理" />
-				</div>
 			</dt>
 <%-- 				<a href="<c:url value="/login/doLogout.do"/>">注销</a> --%>
 <%-- 				<a href="<c:url value="/vs/index.do"/>">管理景区</a>管理景区 --%>
 			</dl>
+			</div>
 		</c:if>
                         
         <!-- Login -->
