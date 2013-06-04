@@ -59,7 +59,7 @@
 	</tr>
 	<tr>
 		<td width="20%">景点简介：</td>
-		<td width="80%"><textarea name="description" style="padding:2px;">"${viewPoint.description}</textarea></td>
+		<td width="80%"><textarea name="description" style="padding:2px;">${viewPoint.description}</textarea></td>
 	</tr>
 	<c:if test="${!empty viewPoint.imgFile}">
 		<tr>

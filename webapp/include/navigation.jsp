@@ -16,11 +16,22 @@
 				<span style="color:#0080FF;font-size:larger;font-weight:bold;">${USER_CONTEXT.userName},欢迎您的到来</span>
 			</dt>
 			<dt>
-				<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />&nbsp;&nbsp;	
-				
-				<a href="<c:url value="/login/doLogout.do"/>">注销</a>
-				<a href="<c:url value="/vs/index.do"/>">管理景区</a>
+				<div class="manage">
+					<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />
+				</div>
 			</dt>
+			<dt>
+				<div class="manage">
+					<input type="button" onclick="window.location.href='<c:url value="/vs/index.do"/>'" name="contenManage" class="button" value="内容管理" />
+				</div>
+			</dt>
+			<dt>
+				<div class="manage">
+					<input type="button" onclick="window.location.href='<c:url value="/jsp/shareFile.jsp"/>'" name="fileManage" class="button" value="文件管理" />
+				</div>
+			</dt>
+<%-- 				<a href="<c:url value="/login/doLogout.do"/>">注销</a> --%>
+<%-- 				<a href="<c:url value="/vs/index.do"/>">管理景区</a>管理景区 --%>
 			</dl>
 		</c:if>
                         
@@ -35,7 +46,7 @@
 					<fieldset>
 						<p>
 						<br/>
-							<label class="top" for="username_2">用户名:</label><br> <input
+							<label class="top" for="username_2">用户名</label><br> <input
 								type="text" value=""
 								class="field" tabindex="1" id="userName" name="userName">
 						</p>
@@ -104,14 +115,14 @@
         <p class="right">Text right.</p>
 
         <h3>Image<br />(text align left)</h3>
-        <p><img src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
-        <p><img class="center" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></p>
-        <p><img class="right" src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+        <p><img src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+        <p><img class="center" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" /></p>
+        <p><img class="right" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
 
         <h3>Image<br />(text align right)</h3>
-        <p class="right"><img src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
-        <p class="right"><img class="center" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></p>
-        <p class="right"><img class="right" src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+        <p class="right"><img src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+        <p class="right"><img class="center" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" /></p>
+        <p class="right"><img class="right" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
 
         <!-- Image Links -->
         <h3>Text link</h3>
@@ -119,7 +130,7 @@
 
         <!-- Image Links -->
         <h3>Image link</h3>
-        <p><a href="#"><img src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></a>Text as in image sections above.</p>
-        <p class="center"><a href="#"><img class="center" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></a></p>
-        <p><a href="#"><img class="right" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></a>Text as in image sections above.</p>     
+        <p><a href="#"><img src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" /></a>Text as in image sections above.</p>
+        <p class="center"><a href="#"><img class="center" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" /></a></p>
+        <p><a href="#"><img class="right" src="<c:url value="/img/image.jpg"/>" width="50" alt="Image description" title="Image title" /></a>Text as in image sections above.</p>     
       </div>

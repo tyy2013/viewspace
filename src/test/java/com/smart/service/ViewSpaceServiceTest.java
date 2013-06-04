@@ -143,7 +143,7 @@ public class ViewSpaceServiceTest extends BaseServiceTest {
 
         //景区相应的评论项是否正确更新
         ViewSpace newViewSpace = viewSpaceService.getFullViewSpace(initSpaceId);
-        assertEquals(1, newViewSpace.getWantNum());
+        assertEquals(1, newViewSpace.getWantNum().intValue());
 
         //抛出IpCommentedException异常
         viewSpaceService.addCommentLog(commentLog);

@@ -180,3 +180,12 @@ INSERT INTO `t_view_space` VALUES (9,'test H','t','','fd',1,0,0,0);
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+
+# set for admin management
+
+insert into t_user(user_id,user_name,password) values(0,'admin','admin');
+update t_user set user_id=0 where user_name='admin';
+insert into t_view_space(space_id,space_name,user_id) values(0,'内容管理',0);
+update t_view_space set space_id=0 where space_name='内容管理' and user_id='0';
+
+

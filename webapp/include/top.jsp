@@ -91,14 +91,12 @@
 	<div class="header-breadcrumbs">
 		<ul>
 			<li>
-			<a href="
-				<c:if test="${empty USER_CONTEXT.userName}">
-					<c:url value="/index.do"/>
-				</c:if>
-				<c:if test="${!empty USER_CONTEXT.userName}">
-					<c:url value="/vs/index.do"/>
-				</c:if>
-			">首页</a>
+			<c:if test="${empty USER_CONTEXT.userName}">
+				<a href="<c:url value="/index.do"/>">首页</a>
+			</c:if>
+			<c:if test="${!empty USER_CONTEXT.userName}">
+				<a href="<c:url value="/vs/index.do"/>">内容管理</a>
+			</c:if>
 			</li>
 			
 			<c:if test="${!empty viewSpace}">

@@ -142,6 +142,7 @@ public class ViewSpaceService {
 	// -------------------------------------------------
 
 	// --------------------旅游景点维护------------------
+
 	/**
 	 * 添加一个景区
 	 */
@@ -150,13 +151,13 @@ public class ViewSpaceService {
 	}
 	
 	/**
-	 * 获取某个景点对象
+	 * 获取某个景点对象及关联景区
 	 * @param pointId
 	 * @return
 	 */
 	public ViewPoint getFullViewPoint(int pointId) {
 		ViewPoint vp = viewPointDao.get(pointId);
-		//viewPointDao.initialize(vp.getViewSpace());
+		viewPointDao.initialize(vp.getViewSpace());
 		return vp;
 	}
 

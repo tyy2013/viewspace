@@ -18,7 +18,7 @@
     	<%@ include file="/include/navigation.jsp" %>
     	
     	<div class="main-content">
-    	<h1 class="pagetitle">管理页面</h1>
+    	<h1 class="pagetitle">内容管理</h1>
     	
         <h1 class="block" >管理空间</h1>
     	<div class="column1-unit">

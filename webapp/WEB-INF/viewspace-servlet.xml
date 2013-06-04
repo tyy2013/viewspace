@@ -27,7 +27,8 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
     <!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    	p:viewClass="org.springframework.web.servlet.view.JstlView"
             p:prefix="/jsp/" p:suffix=".jsp" />
 
     <bean id="multipartResolver"

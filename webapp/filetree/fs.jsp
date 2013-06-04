@@ -41,7 +41,7 @@
 			}
 			
 			.demo {
-				width: 200px;
+				width: 500px;
 				height: 400px;
 				border-top: solid 1px #BBB;
 				border-left: solid 1px #BBB;
@@ -65,29 +65,18 @@
 			    // do something with file
 			    alert(file);
 			    //window.open("<c:url value="/download.do"/>?filepath="+file);
-			    
 			    window.location.href="<c:url value="/download.do"/>?filepath="+file;
 			}
 			
 			function downloadFile(file) {
-				alert(file);
-				
-				$.get("t.jsp?filepath="+file,function(data,status){
-				    //alert("Data: " + data + "\nStatus: " + status);
-				});
-				// $.post("d.jsp",{filepath:file},function(data,status){});
+				window.location.href="<c:url value="/downloadFile.do"/>?filepath="+file;			
 			}
-			/* function downloadFile(url){
-				  var elemIF = document.createElement("iframe");
-				  elemIF.src = url;
-				  elemIF.style.display = "none";
-				  document.body.appendChild(elemIF);
-				} */
 			
 			$(document).ready(function() {
 
 				$('#fileTreeDemo_1').fileTree({
-					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
+					//root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
+					root:'<%=request.getServletContext().getRealPath("/")%>+uploads/',
 					script : 'connectors/jqueryFileTree.jsp'
 				}, function(file) {
 					openFile(file);
@@ -95,8 +84,8 @@
 
 
 
-				$('#fileTreeDemo_2').fileTree({
-					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/',
+				$('#fileTree').fileTree({
+					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
 					script : 'connectors/jqueryFileTree.jsp',
 					folderEvent : 'dblclick',
 					expandSpeed : 750,
@@ -106,7 +95,7 @@
 					loadMessage : 'Loading...',
 					multiFolder : false
 				}, function(file) {
-					alert(file);
+					downloadFile(file);
 				});
 
 			});
@@ -115,32 +104,11 @@
 	</head>
 	
 	<body>
-		
-		<h1>jQuery File Tree Demo</h1>
-		<p>
-			Feel free to view the source code of this page to see how the file tree is being implemented.
-		</p>
-		<form action="<c:url value="/download.do"/>" method="get" />
 		<div class="example">
-			<h2>Default options</h2>
-			<div id="fileTreeDemo_1" class="demo"></div>
+			<h1>用户文件列表</h1>
+			<div id="fileTree" class="demo"></div>
 		</div>
-		
-		<div class="example">
-			<h2>multiFolder = false</h2>
-			<div id="fileTreeDemo_2" class="demo"></div>
-		</div>
-		
-		<div class="example">
-			<h2>Custom load message &amp; easing</h2>
-			<div id="fileTreeDemo_3" class="demo"></div>
-		</div>
-		
-		<div class="example">
-			<h2>Double click &amp; no animation</h2>
-			<div id="fileTreeDemo_4" class="demo"></div>
-		</div>
-		
+				
 	</body>
 	
 </html>

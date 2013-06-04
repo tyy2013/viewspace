@@ -62,7 +62,7 @@
 
 			<!-- B.2 MAIN CONTENT -->
 			<div class="main-content">
-<form action="${context}/vs/save.do" onsubmit="return mySubmit()" method="post">
+<form action="${context}/vs/save.do" method="post">
 <table border="1px" width="100%">
 	<tr>
 		<td width="20%">景区名称：</td>

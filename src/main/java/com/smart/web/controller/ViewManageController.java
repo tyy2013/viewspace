@@ -1,6 +1,5 @@
 package com.smart.web.controller;
 
-import java.io.BufferedInputStream;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.smart.domain.CommentLog;
+import com.smart.domain.User;
+import com.smart.domain.UserFile;
 import com.smart.domain.ViewPoint;
 import com.smart.domain.ViewSpace;
 import com.smart.service.ViewSpaceService;
@@ -42,7 +43,7 @@ public class ViewManageController extends BaseController{
 		return "/listViewSpaces";
 	}
 
-	// 显示用户的所有景区的列表
+	// 显示用户管理的所有景区的列表
 	@RequestMapping(value = "/vs/index", method = RequestMethod.GET)  
 	public String listUserViewSpaces(HttpServletRequest request) {
 		int userId = super.getSessionUser(request).getUserId();
@@ -132,6 +133,16 @@ public class ViewManageController extends BaseController{
         String targetUrl = "/vs/" + id+".do";
         return "redirect:"+targetUrl;
 	}
+	
+		// 显示景点的详细信息
+		@RequestMapping(value = "/vp/{id}", method = RequestMethod.GET)
+		public String showViewPoint(@PathVariable Integer id,HttpServletRequest request) {
+			ViewPoint vp = viewSpaceService.getFullViewPoint(id);
+			ViewSpace viewSpace = vp.getViewSpace();
+			request.setAttribute("viewSpace", viewSpace);
+			request.setAttribute("viewPoint", vp);;
+			return "/showViewPoint";
+		}
 
 	// 打开添加景区的景点的页面
 	@RequestMapping(value = "/vp/{id}/add", method = RequestMethod.GET)
@@ -245,8 +256,44 @@ public class ViewManageController extends BaseController{
         return "redirect:"+targetUrl;
 	}
 	
-	@RequestMapping(value = "/download", method = RequestMethod.GET)
-	public void download(HttpServletRequest request,
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	public String uploadFile(MultipartHttpServletRequest request,
+			@RequestParam("description") String description){
+//		User user = getSessionUser(request);
+//		if(user==null)
+//			return null;
+//		UserFile uf = new UserFile();
+//		uf.setFileName(fileName);
+//		uf.setUserId(user.getUserId());
+//		uf.setDescription(description);
+		
+		try {
+			List<MultipartFile> files = request.getFiles("file");
+			for (int i = 0; i < files.size(); i++) {
+				if (!files.get(i).isEmpty()) {
+					byte[] bytes = files.get(i).getBytes();
+					String srcFileName = files.get(i).getOriginalFilename();
+					String fileExt = srcFileName.substring(srcFileName
+							.lastIndexOf('.'));
+					String fullFilePath = request.getSession().getServletContext().
+							getRealPath("/uploads/" + srcFileName);
+					FileOutputStream fos = new FileOutputStream(fullFilePath); // 写入文件
+					fos.write(bytes);
+					fos.close();
+				}
+			}
+
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+//		viewSpaceService.addViewPoint(vp);
+//        String targetUrl = "/vs/" + spaceId  + "/edit.do";
+        return "shareFile";
+	
+	}
+	
+	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
+	public void downloadFile(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");//只对post中参数编码有效，而get中的参数是在URI中，默认为ISO-8859-1
 

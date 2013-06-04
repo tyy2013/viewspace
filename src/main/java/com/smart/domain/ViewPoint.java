@@ -17,7 +17,7 @@ public class ViewPoint extends BaseDomain {
 	protected String pointName;
 
 	@Column(name = "ticket_price")
-	protected float ticketPrice;
+	protected Float ticketPrice;
 
 	protected String description;
 	
@@ -44,11 +44,11 @@ public class ViewPoint extends BaseDomain {
 		this.pointName = pointName;
 	}
 
-	public float getTicketPrice() {
+	public Float getTicketPrice() {
 		return ticketPrice;
 	}
 
-	public void setTicketPrice(float ticketPrice) {
+	public void setTicketPrice(Float ticketPrice) {
 		this.ticketPrice = ticketPrice;
 	}
 

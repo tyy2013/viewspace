@@ -60,8 +60,9 @@ public class LoginController extends BaseController {
 			if(toUrl!=null)
 				return new ModelAndView(toUrl);
 			//return new ModelAndView("success");
-			else
+			else{
 				return new ModelAndView("redirect:/index.do");
+			}
 
 		}
 	}

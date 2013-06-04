@@ -64,7 +64,7 @@
 	</tr>
 	<tr>
 		<td width="20%">景点简介：</td>
-		<td width="80%"><textarea name="description" id="wysiwyg" style="width:100%"></textarea></td>
+		<td width="80%"><textarea name="description" id="wysiwyg" style="width:95%"></textarea></td>
 	</tr>
 	<tr>
 		<td width="20%">景点图片：</td>

@@ -34,13 +34,13 @@ public class ViewSpace extends BaseDomain {
 	protected String address;
 
 	@Column(name = "want_num")
-	protected int wantNum;
+	protected Integer wantNum;
 
 	@Column(name = "been_num")
-	protected int beenNum;
+	protected Integer beenNum;
 
 	@Column(name = "notwant_num")
-	protected int notwantNum;
+	protected Integer notwantNum;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -98,27 +98,27 @@ public class ViewSpace extends BaseDomain {
 		this.address = address;
 	}
 
-	public int getWantNum() {
+	public Integer getWantNum() {
 		return wantNum;
 	}
 
-	public void setWantNum(int wantNum) {
+	public void setWantNum(Integer wantNum) {
 		this.wantNum = wantNum;
 	}
 
-	public int getBeenNum() {
+	public Integer getBeenNum() {
 		return beenNum;
 	}
 
-	public void setBeenNum(int beenNum) {
+	public void setBeenNum(Integer beenNum) {
 		this.beenNum = beenNum;
 	}
 
-	public int getNotwantNum() {
+	public Integer getNotwantNum() {
 		return notwantNum;
 	}
 
-	public void setNotwantNum(int notwantNum) {
+	public void setNotwantNum(Integer notwantNum) {
 		this.notwantNum = notwantNum;
 	}
 
