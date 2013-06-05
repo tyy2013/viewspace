@@ -21,7 +21,7 @@
 					<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />
 			</dt>
 			<dt>		
-					<input type="button" onclick="window.location.href='<c:url value="/vs/index.do"/>'" name="contenManage" class="button" value="内容管理" />
+					<input type="button" onclick="window.location.href='<c:url value="/managevs.do"/>'" name="contenManage" class="button" value="内容管理" />
 			</dt>
 			<dt>		
 					<input type="button" onclick="window.location.href='<c:url value="/jsp/shareFile.jsp"/>'" name="fileManage" class="button" value="文件管理" />

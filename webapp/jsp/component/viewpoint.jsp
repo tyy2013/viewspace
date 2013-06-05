@@ -5,7 +5,7 @@
 <h1 class="block"><c:if test="${!empty status}">${status.count} -</c:if> ${viewPoint.pointName}</h1>
 <div class="column1-unit">
 	<h1>${viewPoint.ticketPrice}</h1>
-	<h3>${viewPoint.description}</h3>
+	<div>${viewPoint.description}</div>
 	<c:if test="${!empty viewPoint.imgFile}">
 		<p>
 			<img width="100%" src="<c:url value="/uploads/${viewPoint.imgFile}"/>"

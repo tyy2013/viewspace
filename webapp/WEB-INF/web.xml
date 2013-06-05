@@ -45,6 +45,10 @@
   <filter-name>viewSpaceFilter</filter-name>
   <url-pattern>*.jsp</url-pattern>
  </filter-mapping>
+  <filter-mapping>
+  <filter-name>viewSpaceFilter</filter-name>
+  <url-pattern>*.do</url-pattern>
+ </filter-mapping>
  <filter-mapping>
   <filter-name>encodingFilter</filter-name>
   <url-pattern>/*</url-pattern>

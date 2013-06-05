@@ -44,7 +44,7 @@ public class ViewManageController extends BaseController{
 	}
 
 	// 显示用户管理的所有景区的列表
-	@RequestMapping(value = "/vs/index", method = RequestMethod.GET)  
+	@RequestMapping(value = "/managevs", method = RequestMethod.GET)  
 	public String listUserViewSpaces(HttpServletRequest request) {
 		int userId = super.getSessionUser(request).getUserId();
 		List<ViewSpace> viewSpaces = viewSpaceService
@@ -82,7 +82,7 @@ public class ViewManageController extends BaseController{
 	public String addViewSpace(HttpServletRequest request,ViewSpace viewSpace) {
 		viewSpace.setUser(getSessionUser(request));
 		viewSpaceService.addViewSpace(viewSpace);
-		String targetUrl = "/vs/index.do";
+		String targetUrl = "/managevs.do";
 		return "redirect:"+targetUrl;
 	}
 
@@ -100,15 +100,15 @@ public class ViewManageController extends BaseController{
 		vs.setUser(getSessionUser(request));
 		vs.setSpaceId(id);
 		viewSpaceService.updateViewSpace(vs);
-		String targetUrl = "/vs/index.do";
+		String targetUrl = "/managevs.do";
         return "redirect:"+targetUrl;
 	}
 
 	// 删除景区
-	@RequestMapping(value="/vs/{id}/delete",method=RequestMethod.DELETE)  
+	@RequestMapping(value="/vs/{id}/delete",method=RequestMethod.GET)  
 	public String deleteViewSpace(@PathVariable Integer id) {
 		viewSpaceService.deleteViewSpace(id);
-		String targetUrl = "/vs/index.do";
+		String targetUrl = "/managevs.do";
         return "redirect:"+targetUrl;
 	}
 
@@ -134,15 +134,17 @@ public class ViewManageController extends BaseController{
         return "redirect:"+targetUrl;
 	}
 	
-		// 显示景点的详细信息
-		@RequestMapping(value = "/vp/{id}", method = RequestMethod.GET)
-		public String showViewPoint(@PathVariable Integer id,HttpServletRequest request) {
-			ViewPoint vp = viewSpaceService.getFullViewPoint(id);
-			ViewSpace viewSpace = vp.getViewSpace();
-			request.setAttribute("viewSpace", viewSpace);
-			request.setAttribute("viewPoint", vp);;
-			return "/showViewPoint";
-		}
+	// 显示景点的详细信息
+	@RequestMapping(value = "/vp/{id}", method = RequestMethod.GET)
+	public String showViewPoint(@PathVariable Integer id,
+			HttpServletRequest request) {
+		ViewPoint vp = viewSpaceService.getFullViewPoint(id);
+		ViewSpace viewSpace = vp.getViewSpace();
+		request.setAttribute("viewSpace", viewSpace);
+		request.setAttribute("viewPoint", vp);
+		
+		return "/showViewPoint";
+	}
 
 	// 打开添加景区的景点的页面
 	@RequestMapping(value = "/vp/{id}/add", method = RequestMethod.GET)
@@ -256,6 +258,12 @@ public class ViewManageController extends BaseController{
         return "redirect:"+targetUrl;
 	}
 	
+	// 打开文件管理页面
+	@RequestMapping(value = "/showFileManage", method = RequestMethod.GET)
+	public String showFileManagePage() {
+		return "/shareFile";
+	}
+		
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public String uploadFile(MultipartHttpServletRequest request,
 			@RequestParam("description") String description){
@@ -277,6 +285,7 @@ public class ViewManageController extends BaseController{
 							.lastIndexOf('.'));
 					String fullFilePath = request.getSession().getServletContext().
 							getRealPath("/uploads/" + srcFileName);
+					System.out.println("fullFilePath="+fullFilePath);
 					FileOutputStream fos = new FileOutputStream(fullFilePath); // 写入文件
 					fos.write(bytes);
 					fos.close();

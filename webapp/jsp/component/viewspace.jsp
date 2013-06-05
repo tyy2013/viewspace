@@ -6,9 +6,10 @@
 	
 	<!-- Content unit - One column -->
 	<div class="column1-unit">
-<%-- 		<h1>${viewSpace.spaceName}</h1> --%>
-<%-- 		<h3>${viewSpace.address}</h3> --%>
-		<p>${viewSpace.description}</p>
+		<h1>简介</h1>
+		<h3>${viewSpace.address}</h3>
+		
+		<h3>${viewSpace.description}</h3>
 <!-- 		<p> -->
 <%-- 			<a href="<c:url value="${viewSpace.website}"/>">${viewSpace.website}</a> --%>
 <!-- 		</p> -->

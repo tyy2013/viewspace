@@ -6,13 +6,10 @@
 <head>
 <%@ include file="/include/head4.jsp"%>
 <title>文件共享</title>
-	<script>
-
-		  
+	<script>	  
 	   function mySubmit(){
 	      with(document){
-	                
-	        	           
+          
 	         return true;
 	      }
 	      
@@ -28,35 +25,47 @@
 
 			<%@ include file="/include/navigation.jsp"%>
 
+			
 			<!-- B.2 MAIN CONTENT -->
 			<div class="main-content">
+			<h1 class="pagetitle">文件共享</h1>
+
+			<h1 class="block" >上传文件</h1>
 			
-			<div id="uploadfile">
-			<form action="${context}/uploadFile.do" method="post" onsubmit="return mySubmit()" enctype="multipart/form-data" >
-				<div>文件共享</div>
-				<table border="1px" width="100%">
-						
-				<tr>
-					<td width="20%">文件简介：</td>
-					<td width="80%"><input type="text" name="description" style="width:100%"/></td>
-				</tr>
-				<tr>
-					<td width="20%">文件路径：</td>
-					<td width="80%"><input type="file" name=file></td>
-				</tr>	
-				<tr>
-					<td colspan="2" align="center">
-					   <input type="submit" value="上传">
-					   <input type="reset" value="重置">
-					</td>
-				</tr>
-				</table>
-			</form>
+			<div class="column1-unit">
+				<div id="uploadfile" class="contactform">
+				<form action="${context}/uploadFile.do" method="post" onsubmit="return mySubmit()" enctype="multipart/form-data" >
+					<fieldset>
+					<legend>&nbsp;上传文件&nbsp;</legend>
+	
+					<p>
+						<label for="description" class="left">文件简介:</label> 
+						<input type="text" name="description" class="field" value="" tabindex="1" />
+					</p>
+					<p>
+						<label for="file" class="left">文件路径:</label> 
+						<input type="file" name="file" 
+							class="field" value="" tabindex="2" />
+					</p>		
+					<p>
+						<input type="submit" name="submit" id="submit" class="button"
+							value="上传" tabindex="3"> 
+						<input type="reset" value="重置"
+							class="button" tabindex="4"> 
+		
+					</p>
+				</form>
+				</div>
 			</div>
-			<div id="filetree">
-				<iframe src="<c:url value="/filetree/fs.jsp"/>"   name="mainFrame" frameborder="0" marginheight="0" marginwidth="0" height="700" width="100%"></iframe>
-			</div>
+			<hr class="clear-contentunit">
 			
+			<h1 class="block" >下载文件</h1>
+			<div class="column1-unit">
+				<div id="filetree">
+					<iframe src="<c:url value="/filetree/fs.jsp"/>"   name="mainFrame" frameborder="0" marginheight="1" marginwidth="1" height="500" width="100%"></iframe>
+				</div>
+			</div>
+			<hr class="clear-contentunit">
 		</div>
 
 			

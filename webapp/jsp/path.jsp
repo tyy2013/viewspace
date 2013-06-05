@@ -11,15 +11,17 @@
 
 当前WEB应用的物理路径：<%=application.getRealPath("/")%><BR> 
 当前你求请的JSP文件的物理路径：<%=application.getRealPath(request.getRequestURI())%><BR> 
-application.getContextPath<%=application.getContextPath() %><BR> 
-request.getServletPath<%=request.getServletPath() %><BR> 
-request.getContextPath<%=request.getContextPath() %><BR> 
-request.getServletContext.getRealPath(/)<%=request.getServletContext().getRealPath("/") %><BR> 
-request.getServletContext.getRealPath(request.getRequestURI())<%=request.getServletContext().getRealPath(request.getRequestURI()) %><BR> 
+application.getContextPath:<%=application.getContextPath() %><BR> 
+request.getServletPath:<%=request.getServletPath() %><BR> 
+request.getContextPath:<%=request.getContextPath() %><BR> 
+request.getRequestURL():<%=request.getRequestURL() %><BR> 
+request.getRequestURI():<%=request.getRequestURI() %><BR> 
+request.getServletContext.getRealPath(/):<%=request.getServletContext().getRealPath("/") %><BR> 
+request.getServletContext.getRealPath(request.getRequestURI());<%=request.getServletContext().getRealPath(request.getRequestURI()) %><BR> 
 
 
-request.getLocalAddr<%=request.getLocalAddr() %><BR> 
-request.getRemoteAddr<%=request.getRemoteAddr() %><BR> 
+request.getLocalAddr:<%=request.getLocalAddr() %><BR> 
+request.getRemoteAddr:<%=request.getRemoteAddr() %><BR> 
 
 <BR>
 <BR>

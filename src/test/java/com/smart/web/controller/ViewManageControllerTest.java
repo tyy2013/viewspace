@@ -80,7 +80,7 @@ public class ViewManageControllerTest extends BaseWebTest {
         request.setMethod("PUT");
         ModelAndView mav = handlerAdapter.handle(request, response, controller);
         assertNotNull(mav);
-        assertEquals(mav.getViewName(), "redirect:/vs/index");
+        assertEquals(mav.getViewName(), "redirect:/managevs");
     }
 
     //测试打开更改景区页面
@@ -103,7 +103,7 @@ public class ViewManageControllerTest extends BaseWebTest {
         request.setMethod("PUT");
         ModelAndView mav = handlerAdapter.handle(request, response, controller);
         assertNotNull(mav);
-        assertEquals(mav.getViewName(), "redirect:/vs/index");
+        assertEquals(mav.getViewName(), "redirect:/managevs");
     }
     //测试删除景区
     @Test
@@ -112,6 +112,6 @@ public class ViewManageControllerTest extends BaseWebTest {
         request.setMethod("DELETE");
         ModelAndView mav = handlerAdapter.handle(request, response, controller);
         assertNotNull(mav);
-        assertEquals(mav.getViewName(), "redirect:/vs/index");
+        assertEquals(mav.getViewName(), "redirect:/managevs");
     }
 }

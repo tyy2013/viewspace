@@ -14,18 +14,17 @@
 		<!-- B. MAIN -->
 		<div class="main">
 
-			<%@ include file="/include/left.jsp"%>
+			<%@ include file="/include/navigation.jsp"%>
 
 			<!-- B.2 MAIN CONTENT -->
 			<div class="main-content">
 				<!-- Pagetitle -->
-				<h1 class="pagetitle">main-content</h1>
+				<h1 class="pagetitle">template</h1>
 
 				<!-- Content unit - One column -->
 				<div class="main-content">main-content</div>
 			</div>
 
-			<%@ include file="/include/right.jsp"%>
 		</div>
 		<%@ include file="/include/footer.jsp"%>
 	</div>

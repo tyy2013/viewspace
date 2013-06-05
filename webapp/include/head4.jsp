@@ -17,7 +17,7 @@
 
 <!-- Global IE fix to avoid layout crash when single word size wider than column width -->
 <!--[if IE]><style type="text/css"> body {word-wrap: break-word;}</style><![endif]-->
-<link rel="stylesheet" type="text/css" href="<%=context %>/js/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="<%=context %>/js/easyui/themes/gray/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=context %>/js/easyui/themes/icon.css">
 <script type="text/javascript" src="<%=context %>/js/easyui/jquery-1.8.0.min.js"></script>
 <script type="text/javascript" src="<%=context %>/js/easyui/jquery.easyui.min.js"></script>
