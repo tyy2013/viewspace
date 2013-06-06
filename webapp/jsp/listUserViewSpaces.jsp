@@ -61,7 +61,9 @@
     	
     	<div style="margin:10px 0;"></div>
     	
-    	<table id="spacedg" class="easyui-datagrid" style="width:auto;height:auto" title="管理空间"
+    	<table id="spacedg" class="easyui-datagrid" style="width:auto;height:auto" 
+    		title="管理空间"
+    		url="<%=context%>/getViewSpaceList.do"
     		data-options="singleSelect:true,collapsible:true,toolbar:toolbar">
     	
 <!-- 			<tr><th colspan="4" ><div style="float: right"> -->
@@ -76,28 +78,28 @@
 <!-- 				<th data-options="field:'attr1'" >操作</th> -->
 			</tr>
 			</thead>
-			<tbody>
-			<c:forEach var="viewSpace" items="${viewSpaces}" varStatus="status">
+<!-- 			<tbody> -->
+<%-- 			<c:forEach var="viewSpace" items="${viewSpaces}" varStatus="status"> --%>
 <%-- 				<form id="form${status.count}" method="post" action="${context}/vs/${viewSpace.spaceId}/delete.do"> --%>
-				<tr>
-					<td>${viewSpace.spaceId}</td>
-					<td>
-						<a href="<c:url value="/vs/${viewSpace.spaceId}.do"/>">
-						   ${viewSpace.spaceName}
-						</a>
-					</td>
-					<td>${viewSpace.address}</td>
-					<td>${viewSpace.description}</td>
+<!-- 				<tr> -->
+<%-- 					<td>${viewSpace.spaceId}</td> --%>
+<!-- 					<td> -->
+<%-- 						<a href="<c:url value="/vs/${viewSpace.spaceId}.do"/>"> --%>
+<%-- 						   ${viewSpace.spaceName} --%>
+<!-- 						</a> -->
+<!-- 					</td> -->
+<%-- 					<td>${viewSpace.address}</td> --%>
+<%-- 					<td>${viewSpace.description}</td> --%>
 <!-- 					<td> -->
 <%-- 					   <a href="<c:url value="/vs/${viewSpace.spaceId}/edit.do"/>">更改</a> --%>
 <!-- 					   <input type="hidden" name="_method" value="DELETE" /> -->
 <%-- 					   <a href="javascript:document.getElementById('form${status.count}').submit();">删除</a> --%>
 <!-- 					</td>					 -->
-				</tr>
+<!-- 				</tr> -->
 <!-- 				</form> -->
-			</c:forEach>
+<%-- 			</c:forEach> --%>
 
-			</tbody>
+<!-- 			</tbody> -->
 		</table>
 		
 		</div>

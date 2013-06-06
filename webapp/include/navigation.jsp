@@ -21,13 +21,13 @@
 					<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />
 			</dt>
 			<dt>		
-					<input type="button" onclick="window.location.href='<c:url value="/managevs.do"/>'" name="contenManage" class="button" value="内容管理" />
+					<input type="button" onclick="window.location.href='<c:url value="/admin.do"/>'" name="contenManage" class="button" value="内容管理" />
 			</dt>
 			<dt>		
 					<input type="button" onclick="window.location.href='<c:url value="/jsp/shareFile.jsp"/>'" name="fileManage" class="button" value="文件管理" />
 			</dt>
 <%-- 				<a href="<c:url value="/login/doLogout.do"/>">注销</a> --%>
-<%-- 				<a href="<c:url value="/vs/index.do"/>">管理景区</a>管理景区 --%>
+<%-- 				<a href="<c:url value="/admin.do"/>">管理景区</a>管理景区 --%>
 			</dl>
 			</div>
 		</c:if>
@@ -81,8 +81,26 @@
             </fieldset>
           </form>
         </div>
-
-        <!-- Text formats -->
+	<c:if test="${!empty viewSpace}">
+		<h1>内容导航</h1>
+		<!-- Navigation with grid style -->
+	<dl class="nav3-grid">
+		<%-- 		<c:forEach var="viewSpace" items="${viewSpaces}"> --%>
+		<!-- 			<dt> -->
+		<%-- 				<a href="<c:url value="/vs/${viewSpace.spaceId}.do"/>"> --%>
+		<%-- 					${viewSpace.spaceName} </a> --%>
+		<!-- 			</dt> -->
+		<%-- 		</c:forEach> --%>
+		
+		<c:forEach var="viewPoint" varStatus="status"
+			items="${viewSpace.viewPoints}">
+			<dt>
+				<a href="#"> ${viewPoint.pointName} </a>
+			</dt>
+		</c:forEach>
+	</dl>
+	</c:if>
+	<!-- Text formats -->
         <h1>Heading h1</h1>
         <h2>Heading h2</h2>
         <h3>Heading h3</h3>

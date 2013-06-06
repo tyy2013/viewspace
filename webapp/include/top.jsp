@@ -71,11 +71,11 @@
 				<ul>
 					<li><a href="<c:url value="/vs/${viewSpace.spaceId}.do"/>">
 						${viewSpace.spaceName} </a>
-						<ul>
-						<c:forEach var="viewPoint" items="${viewSpace.viewPoints}">
-		                  <li><a href="<c:url value="/vp/${viewPoint.pointId}.do"/>">${viewPoint.pointName}</a></li>
-		                  </c:forEach>                                   
-		                </ul>	
+<!-- 						<ul> -->
+<%-- 						<c:forEach var="viewPoint" items="${viewSpace.viewPoints}"> --%>
+<%-- 		                  <li><a href="<c:url value="/vp/${viewPoint.pointId}.do"/>">${viewPoint.pointName}</a></li> --%>
+<%-- 		                  </c:forEach>                                    --%>
+<!-- 		                </ul>	 -->
 						
 					</li>
 				</ul>

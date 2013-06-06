@@ -13,7 +13,7 @@
 			<h1>用户</h1>
 			<p><span  >${USER_CONTEXT.userName}</span>,欢迎您的到来<br/>
 			<a href="<c:url value="/login/doLogout.do"/>">注销</a>&nbsp;&nbsp;
-						   <a href="<c:url value="/vs/index.do"/>">管理景区</a>
+						   <a href="<c:url value="/admin.do"/>">管理景区</a>
 			</p>
 		</c:if>
 		<c:if test="${empty USER_CONTEXT.userName}">

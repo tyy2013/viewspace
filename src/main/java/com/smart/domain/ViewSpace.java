@@ -46,7 +46,7 @@ public class ViewSpace extends BaseDomain {
 	@JoinColumn(name = "user_id")
 	protected User user;
 
-	@OneToMany(mappedBy = "viewSpace", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "viewSpace", cascade = CascadeType.ALL)//, fetch = FetchType.EAGER)
 	protected List<ViewPoint> viewPoints;
 
 	public int getSpaceId() {

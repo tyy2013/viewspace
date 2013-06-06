@@ -1,19 +1,28 @@
 package com.smart.web.controller;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
+import net.sf.json.JSONObject;
+import com.smart.util.*;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -22,8 +31,10 @@ import com.smart.domain.User;
 import com.smart.domain.UserFile;
 import com.smart.domain.ViewPoint;
 import com.smart.domain.ViewSpace;
+import com.smart.domain.json.ViewSpaceJson;
 import com.smart.service.ViewSpaceService;
 import com.smart.service.exception.IpCommentedException;
+
 /**
  *<pre>
  *   景区管理控制器，这部分功能由景区管理操作，包括：景区、景点增删改查控制转发处理
@@ -34,6 +45,7 @@ public class ViewManageController extends BaseController{
 	@Autowired
 	private ViewSpaceService viewSpaceService;
 	private static final String UPLOADDIR = "uploads/";
+	protected static final Logger log = Logger.getLogger(ViewManageController.class);
 
 	// 显示所有景区的列表
 	@RequestMapping(value = "/index", method = RequestMethod.GET)  
@@ -44,7 +56,7 @@ public class ViewManageController extends BaseController{
 	}
 
 	// 显示用户管理的所有景区的列表
-	@RequestMapping(value = "/managevs", method = RequestMethod.GET)  
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)  
 	public String listUserViewSpaces(HttpServletRequest request) {
 		int userId = super.getSessionUser(request).getUserId();
 		List<ViewSpace> viewSpaces = viewSpaceService
@@ -52,6 +64,38 @@ public class ViewManageController extends BaseController{
 		request.getSession().setAttribute("viewSpaces", viewSpaces);
 		return "/listUserViewSpaces";
 	}
+	
+	// 获取用户管理的所有景区的列表
+	@RequestMapping(value = "/getViewSpaceList", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getViewSpaceList(HttpServletRequest request) {
+		log.info("/getViewSpaceList");
+		int userId = super.getSessionUser(request).getUserId();
+		List<ViewSpace> viewSpaces = viewSpaceService
+				.queryViewSpaceByUserId(userId);
+		request.getSession().setAttribute("viewSpaces", viewSpaces);
+		//Map<String, String> map = new HashMap<String, String>();
+		List<ViewSpaceJson> jsonList = new ArrayList<ViewSpaceJson>();
+		for(ViewSpace vs :viewSpaces){
+			ViewSpaceJson vj = new ViewSpaceJson();
+			try {
+				BeanUtils.copyProperties(vj, vs);
+				jsonList.add(vj);
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		JSONObject result = new JSONObject();
+		result.put("total", jsonList.size());
+		result.put("rows", JSONHelper.collection2json(jsonList));
+		return result;
+	}
+	
+	
 
 	// 根据名称模糊查询景区
 	@RequestMapping(value = "/search",method=RequestMethod.PUT)
@@ -82,7 +126,7 @@ public class ViewManageController extends BaseController{
 	public String addViewSpace(HttpServletRequest request,ViewSpace viewSpace) {
 		viewSpace.setUser(getSessionUser(request));
 		viewSpaceService.addViewSpace(viewSpace);
-		String targetUrl = "/managevs.do";
+		String targetUrl = "/admin.do";
 		return "redirect:"+targetUrl;
 	}
 
@@ -100,7 +144,7 @@ public class ViewManageController extends BaseController{
 		vs.setUser(getSessionUser(request));
 		vs.setSpaceId(id);
 		viewSpaceService.updateViewSpace(vs);
-		String targetUrl = "/managevs.do";
+		String targetUrl = "/admin.do";
         return "redirect:"+targetUrl;
 	}
 
@@ -108,7 +152,7 @@ public class ViewManageController extends BaseController{
 	@RequestMapping(value="/vs/{id}/delete",method=RequestMethod.GET)  
 	public String deleteViewSpace(@PathVariable Integer id) {
 		viewSpaceService.deleteViewSpace(id);
-		String targetUrl = "/managevs.do";
+		String targetUrl = "/admin.do";
         return "redirect:"+targetUrl;
 	}
 
@@ -200,7 +244,7 @@ public class ViewManageController extends BaseController{
 	}
 
 	// 删除景区的景点
-	@RequestMapping(value="/vp/{id}/delete",method=RequestMethod.DELETE)  
+	@RequestMapping(value="/vp/{id}/delete",method=RequestMethod.GET)  
 	public String deleteViewPoint(@PathVariable Integer id) {
 		ViewPoint vp = viewSpaceService.getFullViewPoint(id);
 		int spaceId = vp.getViewSpace().getSpaceId();
