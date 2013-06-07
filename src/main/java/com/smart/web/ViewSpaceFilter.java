@@ -18,7 +18,7 @@ public class ViewSpaceFilter implements Filter {
 	private static final String FILTERED_REQUEST = "@@session_context_filtered_request";
 
 	// ① 需要登录即可访问的URI资源
-	private static final String[] INHERENT_URIS = { "/add","/manage",
+	private static final String[] INHERENT_URIS = { "/add","/admin",
 			"/save", "/edit", "/update","/delete"};
 
 	// ② 执行过滤

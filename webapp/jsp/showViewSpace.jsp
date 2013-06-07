@@ -24,8 +24,7 @@
 					<%@ include file="component/viewpoint.jsp"%>
 				</c:forEach>
 			</div>
-
-			
+	
 		</div>
 		<%@ include file="/include/footer.jsp"%>
 	</div>

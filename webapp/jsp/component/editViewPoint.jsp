@@ -1,60 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script>
-	$(function() {
-		$('#wysiwyg').wysiwyg(
-{controls: {
-      strikeThrough : { visible : true },
-      underline     : { visible : true },
-      
-      separator00 : { visible : true },
-      
-      justifyLeft   : { visible : true },
-      justifyCenter : { visible : true },
-      justifyRight  : { visible : true },
-      justifyFull   : { visible : true },
-      
-      separator01 : { visible : true },
-      
-      indent  : { visible : true },
-      outdent : { visible : true },
-      
-      separator02 : { visible : false },
-      
-      subscript   : { visible : false },
-      superscript : { visible : false },
-      
-      separator03 : { visible : false },
-      
-      undo : { visible : true },
-      redo : { visible : true },
-      
-      separator04 : { visible : true },
-      
-      insertOrderedList    : { visible : true },
-      insertUnorderedList  : { visible : true },
-      insertHorizontalRule : { visible : true },
-      
-      h4mozilla : { visible : true && $.browser.mozilla, className : 'h4', command : 'heading', arguments : ['h4'], tags : ['h4'], tooltip : "Header 4" },
-      h5mozilla : { visible : true && $.browser.mozilla, className : 'h5', command : 'heading', arguments : ['h5'], tags : ['h5'], tooltip : "Header 5" },
-      h6mozilla : { visible : true && $.browser.mozilla, className : 'h6', command : 'heading', arguments : ['h6'], tags : ['h6'], tooltip : "Header 6" },
-      
-      h4 : { visible : true && !( $.browser.mozilla ), className : 'h4', command : 'formatBlock', arguments : ['<H4>'], tags : ['h4'], tooltip : "Header 4" },
-      h5 : { visible : true && !( $.browser.mozilla ), className : 'h5', command : 'formatBlock', arguments : ['<H5>'], tags : ['h5'], tooltip : "Header 5" },
-      h6 : { visible : true && !( $.browser.mozilla ), className : 'h6', command : 'formatBlock', arguments : ['<H6>'], tags : ['h6'], tooltip : "Header 6" },
-      
-      separator07 : { visible : false },
-      
-      cut   : { visible : false },
-      copy  : { visible : false },
-      paste : { visible : false }
-    }
-  }
-  
-  	);
-  });
 
+<script type="text/javascript" src="<%=context %>/js/jwysiwyg/viewspace.js"></script>
+<script>
 	function mySubmit() {
 		with (document) {
 			var pointName = getElementById("pointName");
@@ -82,90 +31,115 @@
 
 	}
 </script>
-<h1 class="pagetitle">更改空间要点信息</h1>
+<h1 class="pagetitle">空间要点信息</h1>
+<div style="margin:10px 0;"></div>
+
+
 <div class="column1-unit">
-	<c:if test="${!empty viewPoint}">
-		<form action="${context}/vp/${viewPoint.pointId}/update.do"
+
+
+<%-- 	<c:if test="${!empty viewPoint}"> --%>
+	<div class="contactform"> 
+	<form action="${context}/vp/
+			<c:if test="${!empty viewPoint}">${viewPoint.pointId}/update.do</c:if>
+			<c:if test="${empty viewPoint}">save.do</c:if>"	
 			method="post" onsubmit="return mySubmit()"
 			enctype="multipart/form-data">
-			<table border="1px" width="100%">
+			
+			<fieldset>
+			<legend><c:if test="${!empty viewPoint}">更改空间要点信息</c:if>
+				<c:if test="${empty viewPoint}">为空间添加新要点</c:if>
+			</legend>
+			<table>
 				<tr>
-					<td width="10%">要点名称：</td>
-					<td width="90%"><input type="text" name="pointName"
-						value="${viewPoint.pointName}" style="width: 100%" /></td>
+					<td><label for="pointName" class="left">要点名称：</label></td>
+					<td><input type="text" name="pointName" class="field" tabindex="1"
+						value="${viewPoint.pointName}" /></td>
 				</tr>
 				<tr>
-					<td width="10%">要点备注：</td>
-					<td width="90%"><input type="text" name="ticketPrice"
-						value="${viewPoint.ticketPrice}" style="width: 100%" /></td>
+					<td ><label for="ticketPrice" class="left">要点备注：</label></td>
+					<td ><input type="text" name="ticketPrice" class="field" tabindex="2"
+						value="${viewPoint.ticketPrice}" /></td>
 				</tr>
 				<tr>
-					<td width="10%">要点简介：</td>
-					<td width="90%">
-						<textarea name="description" id="wysiwyg"
-							style="width: 99%; padding: 1px; height: 400;">${viewPoint.description}</textarea>
+					<td ><label for="description" class="left">要点简介：</label></td>
+					<td>
+						<textarea name="description" id="wysiwyg" tabindex="3"
+							>${viewPoint.description}</textarea>
 					</td>
 				</tr>
 				<c:if test="${!empty viewPoint.imgFile}">
 					<tr>
-						<td width="10%">要点图片：</td>
-						<td width="90%"><img
+						<td ><label for="img" class="left">要点图片：</label></td>
+						<td><img name="img"
 							src="<c:url value="/uploads/${viewPoint.imgFile}"/>"></img></td>
 					</tr>
-					<tr>
-						<td width="10%">重新上传：</td>
-						<td width="90%"><input type="file" name="imgFile"></td>
-					</tr>
 				</c:if>
-				<c:if test="${empty viewPoint.imgFile}">
 					<tr>
-						<td width="10%">要点图片：</td>
-						<td width="90%"><input type="file" name="imgFile"></td>
+						<td><label for="imgFile" class="left">上传:</label></td>
+						<td ><input type="file" name="imgFile" class="field" tabindex="4"></td>
 					</tr>
-				</c:if>
+				
+<%-- 				<c:if test="${empty viewPoint.imgFile}"> --%>
+<!-- 					<tr> -->
+<!-- 						<td ><label for="imgFile" class="left">上传:</label></td> -->
+<!-- 						<td ><input type="file" name="imgFile" class="field" tabindex="4"></td> -->
+<!-- 					</tr> -->
+<%-- 				</c:if> --%>
 
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="保存"> <input
-						type="reset" value="重置"> <input type="hidden"
-						name="spaceId" value="${viewPoint.viewSpace.spaceId}" /></td>
+					<td colspan="2" align="center">
+					<input type="submit" value="保存" tabindex="5"> 
+					<input type="reset" value="重置" tabindex="6"> 
+					<c:if test="${!empty viewPoint}"><input type="hidden"
+						name="spaceId" value="${viewPoint.viewSpace.spaceId}" /></c:if>
+					<c:if test="${!empty viewSpace}"><input type="hidden"
+						name="spaceId" value="${viewSpace.spaceId}" /></c:if>
+					</td>
 				</tr>
 			</table>
+			</fieldset>
 		</form>
-	</c:if>
+	</div>
+<%-- 	</c:if> --%>
 	
-	<c:if test="${empty viewPoint}">
-		<form action="${context}/vp/save.do" method="post"
-			onsubmit="return mySubmit()" enctype="multipart/form-data">
-			<h3>为空间添加新要点</h3>
-			<table border="1px" width="100%">
-				<tr>
-					<td width="10%">要点名称：</td>
-					<td width="90%"><input type="text" name="pointName"
-						style="width: 100%" /></td>
-				</tr>
-				<tr>
-					<td width="10%">要点备注：</td>
-					<td width="90%"><input type="text" name="ticketPrice"
-						style="width: 100%" /></td>
-				</tr>
-				<tr>
-					<td width="10%">要点简介：</td>
-					<td width="90%"><textarea name="description" id="wysiwyg"
-							style="width: 99%; padding: 1px; height: 400;"></textarea>
-						</td>
-				</tr>
-				<tr>
-					<td width="10%">要点图片：</td>
-					<td width="90%"><input type="file" name="imgFile"></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="保存">
-						<input type="reset" value="重置"> <input type="hidden"
-						name="spaceId" value="${viewSpace.spaceId}" /></td>
-				</tr>
-			</table>
-		</form>
-	</c:if>
+<%-- 	<c:if test="${empty viewPoint}"> --%>
+<!-- 	<div class="easyui-panel" title="为空间添加新要点" style="width:600px; ">   -->
+<!--     <div style="padding:10px 0 10px 20px;background-color:rgb(240,240,240);">  -->
+<%-- 		<form action="${context}/vp/save.do" method="post" --%>
+<!-- 			onsubmit="return mySubmit()" enctype="multipart/form-data"> -->
+<!--  			<h3>为空间添加新要点</h3> --> 
+<!-- 			<table> -->
+<!-- 				<tr> -->
+<!-- 					<td>要点名称：</td> -->
+<!-- 					<td><input type="text" name="pointName" -->
+<!-- 						class="easyui-validatebox"/></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td >要点备注：</td> -->
+<!-- 					<td ><input type="text" name="ticketPrice" -->
+<!-- 						class="easyui-validatebox"/></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td>要点简介：</td> -->
+<!-- 					<td><textarea name="description" id="wysiwyg" -->
+<!-- 							style="width: 450; padding: 2px; height: 350;"></textarea> -->
+<!-- 						</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td> 要点图片：</td> -->
+<!-- 					<td ><input type="file"class="easyui-validatebox" name="imgFile"></td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td colspan="2" align="center"><input type="submit" value="保存"> -->
+<!-- 						<input type="reset" value="重置"> <input type="hidden" -->
+<%-- 						name="spaceId" value="${viewSpace.spaceId}" /></td> --%>
+<!-- 				</tr> -->
+<!-- 			</table> -->
+<!-- 		</form> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<%-- 	</c:if> --%>
 </div>
 <hr class="clear-contentunit">
 

@@ -31,6 +31,7 @@ import com.smart.domain.User;
 import com.smart.domain.UserFile;
 import com.smart.domain.ViewPoint;
 import com.smart.domain.ViewSpace;
+import com.smart.domain.json.ViewPointJson;
 import com.smart.domain.json.ViewSpaceJson;
 import com.smart.service.ViewSpaceService;
 import com.smart.service.exception.IpCommentedException;
@@ -74,13 +75,13 @@ public class ViewManageController extends BaseController{
 		List<ViewSpace> viewSpaces = viewSpaceService
 				.queryViewSpaceByUserId(userId);
 		request.getSession().setAttribute("viewSpaces", viewSpaces);
-		//Map<String, String> map = new HashMap<String, String>();
+
 		List<ViewSpaceJson> jsonList = new ArrayList<ViewSpaceJson>();
 		for(ViewSpace vs :viewSpaces){
-			ViewSpaceJson vj = new ViewSpaceJson();
+			ViewSpaceJson vsj = new ViewSpaceJson();
 			try {
-				BeanUtils.copyProperties(vj, vs);
-				jsonList.add(vj);
+				BeanUtils.copyProperties(vsj, vs);
+				jsonList.add(vsj);
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -89,10 +90,10 @@ public class ViewManageController extends BaseController{
 				e.printStackTrace();
 			}
 		}
-		JSONObject result = new JSONObject();
-		result.put("total", jsonList.size());
-		result.put("rows", JSONHelper.collection2json(jsonList));
-		return result;
+//		JSONObject result = new JSONObject();
+//		result.put("total", jsonList.size());
+//		result.put("rows", JSONHelper.collection2json(jsonList));
+		return jsonList;
 	}
 	
 	
@@ -132,10 +133,35 @@ public class ViewManageController extends BaseController{
 
 	// 打开更改景区页面
 	@RequestMapping(value="/vs/{id}/edit")  
-	public String updateViewSpacePage(@PathVariable Integer id,HttpServletRequest request) {
+	public String updateViewSpacePage(@PathVariable Integer id, HttpServletRequest request) {
 		ViewSpace viewSpace = viewSpaceService.getFullViewSpace(id);
 		request.setAttribute("viewSpace", viewSpace);
 		return "/updateViewSpace";
+	}
+	
+	// 获取景区的所有景点的列表
+	@RequestMapping(value = "/vs/{id}/getViewPointList", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getViewPointList(@PathVariable Integer id, HttpServletRequest request) {
+		log.info("/getViewPointList");
+		ViewSpace vs = viewSpaceService.getFullViewSpace(id);
+		if(vs==null || vs.getViewPoints()==null)
+			return null;
+		List<ViewPointJson> jsonList = new ArrayList<ViewPointJson>();
+		for (ViewPoint vp : vs.getViewPoints()) {
+			ViewPointJson vpj = new ViewPointJson();
+			try {
+				BeanUtils.copyProperties(vpj, vp);
+				jsonList.add(vpj);
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return jsonList;
 	}
 
 	// 更改景区
@@ -283,7 +309,7 @@ public class ViewManageController extends BaseController{
 					String srcFileName = files.get(i).getOriginalFilename();
 					String fileExt = srcFileName.substring(srcFileName
 							.lastIndexOf('.'));
-					String fileName = srcFileName;//getNewFileName() + fileExt;
+					String fileName = getNewFileName() + fileExt;
 					String fullFilePath = request.getSession()
 							.getServletContext().getRealPath(
 									"/uploads/" + fileName);

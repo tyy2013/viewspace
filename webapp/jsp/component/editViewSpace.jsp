@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<script type="text/javascript" src="<%=context %>/js/jwysiwyg/viewspace.js"></script>
 <script>
 	function mySubmit() {
 		with (document) {
@@ -45,81 +47,92 @@
 <h1 class="block">编辑空间内容</h1>
 <div class="column1-unit">
 	<div class="contactform">
-	<c:if test="${!empty viewSpace}">
-		<form method="post"	action="${context}/vs/${viewSpace.spaceId}/update.do"
+<%-- 	<c:if test="${!empty viewSpace}"> --%>
+		<form method="post"	action="${context}/vs/
+			<c:if test="${!empty viewSpace}">${viewSpace.spaceId}/update.do</c:if>
+			<c:if test="${empty viewSpace}">save.do</c:if>
+			"
 			onsubmit="return mySubmit()">
 			<fieldset>
 				<legend>&nbsp;${viewSpace.spaceName} 内容&nbsp;</legend>
 
-				<p>
-					<label for="spaceName" class="left">空间名称:</label> 
-					<input type="text" name="spaceName" value="${viewSpace.spaceName}"
-						class="field" value="" tabindex="1" />
-				</p>
-				<p>
-					<label for="address" class="left">地址:</label> 
-					<input type="text" name="address" value="${viewSpace.address}"
-						class="field" value="" tabindex="2" />
-				</p>
-				<p>
-					<label for="website" class="left">网址:</label> 
-					<input type="text" name="website" value="${viewSpace.website}"
-						class="field" value="" tabindex="3" />
-				</p>
-				<p>
-					<label for="description" class="left">简介:</label> 
-					<input	type="text" class="field" name="description" tabindex="4"
-						value="${viewSpace.description}" />
-				</p>
-				<p>
+				<table>
+				<tr>
+					<td><label for="spaceName" class="left">空间名称:</label> </td>
+					<td><input type="text" name="spaceName" value="${viewSpace.spaceName}"
+						class="field" tabindex="1" /></td>
+				</tr>
+				<tr>
+					<td><label for="address" class="left">地址:</label> </td>
+					<td><input type="text" name="address" value="${viewSpace.address}"
+						class="field" tabindex="2" /></td>
+				</tr>
+				<tr>
+					<td><label for="website" class="left">网址:</label> </td>
+					<td><input type="text" name="website" value="${viewSpace.website}"
+						class="field" tabindex="3" /></td>
+				</tr>
+				<tr>
+					<td><label for="description" class="left">简介:</label> </td>
+					<td><textarea name="description" id="wysiwyg" tabindex="4">
+						${viewPoint.description}</textarea></td>
+<!-- 					<input	type="text" class="field" name="description" tabindex="4" -->
+<%-- 						value="${viewSpace.description}" /> --%>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
 					<input type="submit" name="submit" id="submit" class="button"
 						value="保存" tabindex="5"> 
 					<input type="reset" value="重置"
 						class="button" tabindex="6"> 
+					<input type="hidden" name="_method" value="PUT"> 
+					</td>
+					<c:if test="${!empty viewSpace}">
 					<input type="hidden"
 						name="wantNum" value="${viewSpace.wantNum}" /> 
 					<input
 						type="hidden" name="beenNum" value="${viewSpace.beenNum}" /> 
 					<input
 						type="hidden" name="notwantNum" value="${viewSpace.notwantNum}" />
-					<input type="hidden" name="_method" value="PUT"> <input
-						type="hidden" name="spaceId" value="${viewSpace.spaceId}" />
-				</p>
+					<input type="hidden" name="spaceId" value="${viewSpace.spaceId}" />
+					</c:if>
+				</tr>
+				</table>
 			</fieldset>
 		</form>
-	</c:if>
-	<c:if test="${empty viewSpace}">		
-<form action="${context}/vs/save.do" method="post">
-	<fieldset>
-				<legend>&nbsp;${viewSpace.spaceName} 内容&nbsp;</legend>
-				<p>
-					<label for="spaceName" class="left">空间名称:</label> 
-					<input type="text" name="spaceName" 
-						class="field" value="" tabindex="1" />
-				</p>
-				<p>
-					<label for="address" class="left">地址:</label> 
-					<input type="text" name="address" 
-						class="field" value="" tabindex="2" />
-				</p>
-				<p>
-					<label for="website" class="left">网址:</label> 
-					<input type="text" name="website" 
-						class="field" value="" tabindex="3" />
-				</p>
-				<p>
-					<label for="description" class="left">简介:</label> 
-					<input	type="text" class="field" name="description" tabindex="4"/>
-				</p>
-				<p>
-					<input type="submit" value="保存" class="button" tabindex="5" >
-				   <input type="reset" value="重置" class="button" tabindex="6" >
-				   <input type="hidden" name="_method" value="PUT">
-				</p>
-			</fieldset>
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${empty viewSpace}">		 --%>
+<%-- <form action="${context}/vs/save.do" method="post"> --%>
+<!-- 	<fieldset> -->
+<%-- 				<legend>&nbsp;${viewSpace.spaceName} 内容&nbsp;</legend> --%>
+<!-- 				<p> -->
+<!-- 					<label for="spaceName" class="left">空间名称:</label>  -->
+<!-- 					<input type="text" name="spaceName"  -->
+<!-- 						class="field" value="" tabindex="1" /> -->
+<!-- 				</p> -->
+<!-- 				<p> -->
+<!-- 					<label for="address" class="left">地址:</label>  -->
+<!-- 					<input type="text" name="address"  -->
+<!-- 						class="field" value="" tabindex="2" /> -->
+<!-- 				</p> -->
+<!-- 				<p> -->
+<!-- 					<label for="website" class="left">网址:</label>  -->
+<!-- 					<input type="text" name="website"  -->
+<!-- 						class="field" value="" tabindex="3" /> -->
+<!-- 				</p> -->
+<!-- 				<p> -->
+<!-- 					<label for="description" class="left">简介:</label>  -->
+<!-- 					<input	type="text" class="field" name="description" tabindex="4"/> -->
+<!-- 				</p> -->
+<!-- 				<p> -->
+<!-- 					<input type="submit" value="保存" class="button" tabindex="5" > -->
+<!-- 				   <input type="reset" value="重置" class="button" tabindex="6" > -->
+<!-- 				   <input type="hidden" name="_method" value="PUT"> -->
+<!-- 				</p> -->
+<!-- 			</fieldset> -->
 
-</form>
-</c:if>
+<!-- </form> -->
+<%-- </c:if> --%>
 
 	</div>
 </div>

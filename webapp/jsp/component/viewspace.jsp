@@ -9,7 +9,8 @@
 		<h1>简介</h1>
 		<h3>${viewSpace.address}</h3>
 		
-		<h3>${viewSpace.description}</h3>
+		<div style="margin:10px 0;"></div>
+		<div>${viewSpace.description}</div>
 <!-- 		<p> -->
 <%-- 			<a href="<c:url value="${viewSpace.website}"/>">${viewSpace.website}</a> --%>
 <!-- 		</p> -->

@@ -58,7 +58,7 @@ public class LoginController extends BaseController {
 			setSessionUser(request,user);
 			String toUrl=(String) request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
 			if(toUrl!=null)
-				return new ModelAndView("forward:"+toUrl);
+				return new ModelAndView("redirect:"+toUrl);
 			//return new ModelAndView("success");
 			else{
 				return new ModelAndView("redirect:/index.do");
