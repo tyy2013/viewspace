@@ -136,7 +136,7 @@
 	<c:if test="${empty viewPoint}">
 		<form action="${context}/vp/save.do" method="post"
 			onsubmit="return mySubmit()" enctype="multipart/form-data">
-			<div>为空间添加新要点</div>
+			<h3>为空间添加新要点</h3>
 			<table border="1px" width="100%">
 				<tr>
 					<td width="10%">要点名称：</td>
