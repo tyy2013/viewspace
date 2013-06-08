@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.smart.cons.CommonConstant;
 import com.smart.domain.CommentLog;
 import com.smart.domain.User;
 import com.smart.domain.UserFile;
@@ -310,9 +311,8 @@ public class ViewManageController extends BaseController{
 					String fileExt = srcFileName.substring(srcFileName
 							.lastIndexOf('.'));
 					String fileName = getNewFileName() + fileExt;
-					String fullFilePath = request.getSession()
-							.getServletContext().getRealPath(
-									"/uploads/" + fileName);
+					String fullFilePath = request.getSession().getServletContext()
+							.getRealPath(CommonConstant.UPLOAD_IMG_DIR + fileName);
 					FileOutputStream fos = new FileOutputStream(fullFilePath); // 写入文件
 					fos.write(bytes);
 					fos.close();
@@ -337,9 +337,9 @@ public class ViewManageController extends BaseController{
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	public String uploadFile(MultipartHttpServletRequest request,
 			@RequestParam("description") String description){
-//		User user = getSessionUser(request);
-//		if(user==null)
-//			return null;
+		User user = getSessionUser(request);
+		if(user==null)
+			return "forward:/login.jsp";
 //		UserFile uf = new UserFile();
 //		uf.setFileName(fileName);
 //		uf.setUserId(user.getUserId());
@@ -349,13 +349,19 @@ public class ViewManageController extends BaseController{
 			List<MultipartFile> files = request.getFiles("file");
 			for (int i = 0; i < files.size(); i++) {
 				if (!files.get(i).isEmpty()) {
+					String uploadPath = request.getSession().getServletContext()
+							.getRealPath(CommonConstant.UPLOAD_DIR);
+					File uploadDir = new File(uploadPath+"/"+user.getUserName());
+					if(!uploadDir.exists())
+						uploadDir.mkdir();
+					
 					byte[] bytes = files.get(i).getBytes();
 					String srcFileName = files.get(i).getOriginalFilename();
-					String fileExt = srcFileName.substring(srcFileName
-							.lastIndexOf('.'));
+//					String fileExt = srcFileName.substring(srcFileName
+//							.lastIndexOf('.'));
 					String fullFilePath = request.getSession().getServletContext().
-							getRealPath("/uploads/" + srcFileName);
-					System.out.println("fullFilePath="+fullFilePath);
+							getRealPath(CommonConstant.UPLOAD_DIR +"/"+user.getUserName()+"/"+srcFileName);
+					log.info("fullFilePath="+fullFilePath);
 					FileOutputStream fos = new FileOutputStream(fullFilePath); // 写入文件
 					fos.write(bytes);
 					fos.close();
@@ -367,7 +373,7 @@ public class ViewManageController extends BaseController{
 		}
 //		viewSpaceService.addViewPoint(vp);
 //        String targetUrl = "/vs/" + spaceId  + "/edit.do";
-        return "shareFile";
+        return "/shareFile";
 	
 	}
 	
@@ -379,14 +385,13 @@ public class ViewManageController extends BaseController{
 		String filePath =request.getParameter("filepath");
 		filePath = new String(filePath.getBytes("ISO-8859-1"),"utf-8");//将默认URI中的编码转换成需要的编码
 		String fileName = filePath.substring(filePath.lastIndexOf("/")+1);
-		System.out.println(filePath);
+		log.info(filePath);
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 
-		String ctxPath = request.getSession().getServletContext()
-				.getRealPath("/")
-				+ ViewManageController.UPLOADDIR;
-		String downLoadPath = ctxPath + fileName;
+//		String ctxPath = request.getSession().getServletContext()
+//				.getRealPath("/")+CommonConstant.UPLOAD_DIR;
+//		String downLoadPath = ctxPath + fileName;
 
 		long fileLength = new File(filePath).length();
 		response.setContentType("text/html;charset=UTF-8");

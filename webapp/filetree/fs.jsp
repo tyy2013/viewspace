@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.smart.cons.CommonConstant,com.smart.domain.User"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -8,7 +8,14 @@
 	<head>
 		<title>jQuery File Tree Demo</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<%  
 		
+		User user = (User) request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
+		String userName = user.getUserName();
+		String path = request.getServletContext().getRealPath(CommonConstant.UPLOAD_DIR+userName)+"\\";
+		path = path.replace("\\" , "\\\\");
+		System.out.println(path);
+	%>	
 		<style type="text/css">
 			BODY,
 			HTML {
@@ -75,8 +82,8 @@
 			$(document).ready(function() {
 
 				$('#fileTreeDemo_1').fileTree({
-					//root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
-					root:'<%=request.getServletContext().getRealPath("/")%>+uploads/',
+					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
+					//root:'<%=path%>',
 					script : 'connectors/jqueryFileTree.jsp'
 				}, function(file) {
 					openFile(file);
@@ -85,7 +92,7 @@
 
 
 				$('#fileTree').fileTree({
-					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
+					root : '<%=path%>',
 					script : 'connectors/jqueryFileTree.jsp',
 					folderEvent : 'dblclick',
 					expandSpeed : 750,
@@ -106,7 +113,7 @@
 	<body>
 		<div class="example">
 			<h1>用户文件列表</h1>
-			<div id="fileTree" class="demo"></div>
+			<div id=fileTree class="demo"></div>
 		</div>
 				
 	</body>

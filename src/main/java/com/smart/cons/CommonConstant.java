@@ -23,4 +23,16 @@ public interface CommonConstant
     * 每页的记录数
     */
    public static final int PAGE_SIZE = 3;
+   
+   /**
+    * 上传照片文件目录
+    */
+   public static final String UPLOAD_IMG_DIR = "/uploadimg/";
+   
+   /**
+    * 上传文件目录
+    */
+   public static final String UPLOAD_DIR = "/uploads/";
+   
+   
 }
