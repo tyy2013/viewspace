@@ -15,7 +15,8 @@
 		String path = request.getServletContext().getRealPath(CommonConstant.UPLOAD_DIR+userName)+"\\";
 		path = path.replace("\\" , "\\\\");
 		System.out.println(path);
-	%>	
+	%>			
+	<%@ include file="/include/head4.jsp"%>
 		<style type="text/css">
 			BODY,
 			HTML {
@@ -24,9 +25,10 @@
 			}
 			BODY {
 				font-family: Verdana, Arial, Helvetica, sans-serif;
-				font-size: 11px;
+				font-size: 14px;
 				background: #EEE;
-				padding: 15px;
+				padding: 10px;
+				background-image: none
 			}
 			
 			H1 {
@@ -44,12 +46,12 @@
 			
 			.example {
 				float: left;
-				margin: 15px;
+				margin: 10px;
 			}
 			
 			.demo {
-				width: 500px;
-				height: 600px;
+				width: 550px;
+				height: 400px;
 				border-top: solid 1px #BBB;
 				border-left: solid 1px #BBB;
 				border-bottom: solid 1px #FFF;
@@ -60,9 +62,9 @@
 			}
 			
 		</style>
-		
-		<script src="jquery.min.js" type="text/javascript"></script>
-		<script src="jquery.easing.min.js" type="text/javascript"></script>
+
+<!-- 		<script src="jquery.min.js" type="text/javascript"></script> -->
+<!-- 		<script src="jquery.easing.min.js" type="text/javascript"></script> -->
 		<script src="jqueryFileTree.js" type="text/javascript"></script>
 		<link href="jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
 		
@@ -80,17 +82,7 @@
 			}
 			
 			$(document).ready(function() {
-
-				$('#fileTreeDemo_1').fileTree({
-					root : 'D:/apache-tomcat-7.0.27/wtpwebapps/viewspace/uploads/',
-					//root:'<%=path%>',
-					script : 'connectors/jqueryFileTree.jsp'
-				}, function(file) {
-					openFile(file);
-				});
-
-
-
+			
 				$('#fileTree').fileTree({
 					root : '<%=path%>',
 					script : 'connectors/jqueryFileTree.jsp',
@@ -113,7 +105,7 @@
 	<body>
 		<div class="example">
 			<h1>用户文件列表</h1>
-			<div id=fileTree class="demo"></div>
+			<div id="fileTree" class="demo"></div>
 		</div>
 				
 	</body>
