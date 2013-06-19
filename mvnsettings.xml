@@ -62,7 +62,8 @@
 		<!-- proxy | Specification for one proxy, to be used in connecting to the 
 			network. | <proxy> <id>optional</id> <active>true</active> <protocol>http</protocol> 
 			<username>proxyuser</username> <password>proxypass</password> <host>proxy.host.net</host> 
-			<port>80</port> <nonProxyHosts>local.net|some.host.com</nonProxyHosts> </proxy> -->
+				<port>80</port> <nonProxyHosts>local.net|some.host.com</nonProxyHosts> </proxy> -->
+		
 	</proxies>
 
 	<!-- servers | This is a list of authentication profiles, keyed by the server-id 
@@ -78,12 +79,12 @@
 		<server>
 			<id>nexus-releases</id>
 			<username>admin</username>
-			<password>admin</password>
+			<password>admin123</password>
 		</server>
 		<server>
 			<id>nexus-snapshots</id>
 			<username>admin</username>
-			<password>admin</password>
+			<password>admin123</password>
 		</server>
 		<server>
 			<id>tomcat</id>
@@ -110,7 +111,7 @@
 			lookup purposes, and must be unique across the set of mirrors. | <mirror> 
 			<id>mirrorId</id> <mirrorOf>repositoryId</mirrorOf> <name>Human Readable 
 			Name for this Mirror.</name> <url>http://my.repository.com/repo/path</url> 
-			</mirror> -->
+			</mirror> -->  
 
 
 	</mirrors>
@@ -161,7 +162,47 @@
 			<activation> <property> <name>target-env</name> <value>dev</value> </property> 
 			</activation> <properties> <tomcatPath>/path/to/tomcat/instance</tomcatPath> 
 			</properties> </profile> -->
-
+		<profile>  
+      <id>development</id>  
+      <repositories>  
+        <repository>  
+          <id>central</id>  
+          <url>http://localhost:8081/nexus/content/groups/public/</url>  
+          <releases><enabled>true</enabled></releases>  
+          <snapshots><enabled>false</enabled></snapshots>  
+        </repository>  
+      </repositories>  
+     <pluginRepositories>  
+        <pluginRepository>  
+          <id>central</id>  
+          <url>http://localhost:8081/nexus/content/groups/public/</url>  
+          <releases><enabled>true</enabled></releases>  
+          <snapshots><enabled>false</enabled></snapshots>  
+        </pluginRepository>  
+      </pluginRepositories>  
+    </profile> 
+    
+    <profile>  
+      <!--this profile will allow snapshots to be searched when activated-->  
+      <id>public-snapshots</id>  
+      <repositories>  
+        <repository>  
+          <id>public-snapshots</id>  
+          <url>http://public-snapshots</url>  
+          <releases><enabled>false</enabled></releases>  
+          <snapshots><enabled>true</enabled></snapshots>  
+        </repository>  
+      </repositories>  
+     <pluginRepositories>  
+        <pluginRepository>  
+          <id>public-snapshots</id>  
+          <url>http://public-snapshots</url>  
+          <releases><enabled>false</enabled></releases>  
+          <snapshots><enabled>true</enabled></snapshots>  
+        </pluginRepository>  
+      </pluginRepositories>  
+    </profile>
+    
 		<profile>
 			<id>jboss-public-repository</id>
 			<repositories>
@@ -211,7 +252,7 @@
 						<updatePolicy>never</updatePolicy>
 					</releases>
 					<snapshots>
-						<enabled>true</enabled>
+						<enabled>false</enabled>
 						<updatePolicy>never</updatePolicy>
 					</snapshots>
 				</repository>
@@ -227,7 +268,7 @@
 						<updatePolicy>never</updatePolicy>
 					</releases>
 					<snapshots>
-						<enabled>true</enabled>
+						<enabled>false</enabled>
 						<updatePolicy>never</updatePolicy>
 					</snapshots>
 				</pluginRepository>
@@ -247,7 +288,7 @@
 						<updatePolicy>always</updatePolicy>
 					</releases>
 					<snapshots>
-						<enabled>true</enabled>
+						<enabled>false</enabled>
 						<updatePolicy>never</updatePolicy>
 					</snapshots>
 				</repository>
@@ -263,7 +304,7 @@
 						<updatePolicy>always</updatePolicy>
 					</releases>
 					<snapshots>
-						<enabled>true</enabled>
+						<enabled>false</enabled>
 						<updatePolicy>never</updatePolicy>
 					</snapshots>
 				</pluginRepository>
@@ -311,9 +352,10 @@
 		<activeProfiles> <activeProfile>alwaysActiveProfile</activeProfile> <activeProfile>anotherAlwaysActiveProfile</activeProfile> 
 		</activeProfiles> -->
 	<activeProfiles>
+		<activeProfile>development</activeProfile>  
 		<!-- <activeProfile>jboss-public-repository</activeProfile> -->
-		<activeProfile>repo.springsource.org</activeProfile>
-		<activeProfile>repository-apache-org</activeProfile>
+<!-- 		<activeProfile>repo.springsource.org</activeProfile> -->
+<!-- 		<activeProfile>repository-apache-org</activeProfile> -->
 		<!-- <activeProfile>redhat-techpreview-all-repository</activeProfile> -->
 		<!-- <activeProfile>com-springsource-repository-bundles-external</activeProfile> -->
 	</activeProfiles>
