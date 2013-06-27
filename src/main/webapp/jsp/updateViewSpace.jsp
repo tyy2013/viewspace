@@ -134,7 +134,8 @@
             		alert("请先选择");
             		return;
             	}
-            	//alert(row.spaceId); 
+            	if(!confirm("确认要删除吗？")) 
+            		return;
             	var url = "<%=context%>"+"/vp/"+row.pointId+"/delete.do";
             	//alert(url);
             	window.location.href=url;

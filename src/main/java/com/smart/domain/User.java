@@ -2,6 +2,8 @@ package com.smart.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -17,9 +19,10 @@ public class User extends BaseDomain {
     @Column(name = "user_name")
     protected String userName;
 
+    @Column(name = "password")
     protected String password;
 
-    @Column(name = "last_login_time")
+	@Column(name = "last_login_time")
     protected Date lastVisit;
 
     @Column(name = "last_login_ip")

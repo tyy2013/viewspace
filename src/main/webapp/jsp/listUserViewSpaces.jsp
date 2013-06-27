@@ -99,11 +99,11 @@
             		alert("请先选择");
             		return;
             	}
-            	//alert(row.spaceId); 
+            	if(!confirm("确认要删除吗？")) 
+            		return;
             	var url = "<%=context%>"+"/vs/"+row.spaceId+"/delete.do";
             	//alert(url);
-            	window.location.href=url;
-
+            	window.location.href=url;			
             	
             }  
         }]; 

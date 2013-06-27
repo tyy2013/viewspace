@@ -26,6 +26,9 @@
 			<dt>		
 					<input type="button" onclick="window.location.href='<c:url value="/showFileManage.do"/>'" name="fileManage" class="button" value="文件管理" />
 			</dt>
+			<dt>		
+					<input type="button" onclick="window.location.href='<c:url value="/user/manage.do"/>'" name="userManage" class="button" value="用户管理" />
+			</dt>
 <%-- 				<a href="<c:url value="/login/doLogout.do"/>">注销</a> --%>
 <%-- 				<a href="<c:url value="/admin.do"/>">管理景区</a>管理景区 --%>
 			</dl>
@@ -93,4 +96,39 @@
 		</c:forEach>
 	</dl>
 	</c:if>
+	
+	<!-- Text formats -->
+        <h1>Heading h1</h1>
+        <h2>Heading h2</h2>
+        <h3>Heading h3</h3>
+
+        <h3>Paragraph text</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <h3>Bulleted list</h3>
+        <ul>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li>Fact 1</li>
+          <li>Fact 2</li>                            
+        </ul>
+
+        <h3>Ordered list</h3>
+        <ol>
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li>Fact 1</li>
+          <li>Fact 2</li>                           
+        </ol>
+
+        <h3>Text orientation</h3>
+        <p>Text left.</p>
+        <p class="center">Text center.</p>
+        <p class="right">Text right.</p>
+
+        <h3>Image<br />(text align left)</h3>
+        <p><img src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+        <p><img class="center" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></p>
+        <p><img class="right" src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
+	
 </div>

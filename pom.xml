@@ -320,7 +320,7 @@
 					<contextPath>/viewspace</contextPath>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8787</port>
+							<port>8080</port>
 						</connector>
 					</connectors>
 				</configuration>

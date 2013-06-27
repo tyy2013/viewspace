@@ -33,6 +33,9 @@
                 <prop key="hibernate.cache.use_query_cache">true</prop>
             </props>
         </property>
+<!--         <property name="configLocation"> -->
+<!-- 			<value>classpath:hibernate.cfg.xml</value> -->
+<!-- 		</property> -->
     </bean>
 
     <bean id="hibernateTemplate"
