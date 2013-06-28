@@ -339,12 +339,8 @@ public class ViewManageController extends BaseController{
 			@RequestParam("description") String description){
 		User user = getSessionUser(request);
 		if(user==null)
-			return "forward:/login.jsp";
-//		UserFile uf = new UserFile();
-//		uf.setFileName(fileName);
-//		uf.setUserId(user.getUserId());
-//		uf.setDescription(description);
-		
+			return "forward:/index.jsp";
+		String share = request.getParameter("share");
 		try {
 			List<MultipartFile> files = request.getFiles("file");
 			for (int i = 0; i < files.size(); i++) {
@@ -359,8 +355,13 @@ public class ViewManageController extends BaseController{
 					String srcFileName = files.get(i).getOriginalFilename();
 //					String fileExt = srcFileName.substring(srcFileName
 //							.lastIndexOf('.'));
-					String fullFilePath = request.getSession().getServletContext().
+					String fullFilePath = null;
+					if(share==null)
+						fullFilePath = request.getSession().getServletContext().
 							getRealPath(CommonConstant.UPLOAD_DIR +"/"+user.getUserName()+"/"+srcFileName);
+					else
+						fullFilePath = request.getSession().getServletContext().
+							getRealPath(CommonConstant.UPLOAD_DIR +"/share/"+srcFileName);
 					log.info("fullFilePath="+fullFilePath);
 					FileOutputStream fos = new FileOutputStream(fullFilePath); // 写入文件
 					fos.write(bytes);
@@ -373,7 +374,7 @@ public class ViewManageController extends BaseController{
 		}
 //		viewSpaceService.addViewPoint(vp);
 //        String targetUrl = "/vs/" + spaceId  + "/edit.do";
-        return "/shareFile";
+        return "redirect:/showFileManage.do";
 	
 	}
 	
@@ -408,5 +409,6 @@ public class ViewManageController extends BaseController{
 		}
 		bis.close();
 		bos.close();
+		
 	}
 }

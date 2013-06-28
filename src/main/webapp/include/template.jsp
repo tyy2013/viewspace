@@ -22,7 +22,7 @@
 				<h1 class="pagetitle">template</h1>
 
 				<!-- Content unit - One column -->
-				<div class="main-content">main-content</div>
+				<div class="column1-unit">column1-unit</div>
 			</div>
 
 		</div>

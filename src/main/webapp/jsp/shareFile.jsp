@@ -37,23 +37,28 @@
 				<form action="${context}/uploadFile.do" method="post" onsubmit="return mySubmit()" enctype="multipart/form-data" >
 					<fieldset>
 					<legend>&nbsp;上传文件&nbsp;</legend>
-	
+					
 					<p>
 						<label for="description" class="left">文件简介:</label> 
 						<input type="text" name="description" class="field" value="" tabindex="1" />
 					</p>
 					<p>
 						<label for="file" class="left">文件路径:</label> 
-						<input type="file" name="file" 
+						<input type="file" name="file" alt="文件大小不能超过10M"
 							class="field" value="" tabindex="2" />
-					</p>		
+					</p>
+					<p>	
+					<label>&nbsp;&nbsp;上传到公共文件夹:</label>
+					<input type="checkbox" name="share" value="true">
+					</p>	
 					<p>
 						<input type="submit" name="submit" id="submit" class="button"
 							value="上传" tabindex="3"> 
 						<input type="reset" value="重置"
 							class="button" tabindex="4"> 
-		
+								
 					</p>
+					</fieldset>
 				</form>
 				</div>
 			</div>

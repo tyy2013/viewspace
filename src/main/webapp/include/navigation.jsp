@@ -17,18 +17,16 @@
 			<dt>	
 				<span style="color:#0080FF;font-size:larger;font-weight:bold;">${USER_CONTEXT.userName},欢迎您的到来</span>
 			</dt>
-			<dt>
-					<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />
-			</dt>
-			<dt>		
-					<input type="button" onclick="window.location.href='<c:url value="/admin.do"/>'" name="contenManage" class="button" value="内容管理" />
-			</dt>
-			<dt>		
-					<input type="button" onclick="window.location.href='<c:url value="/showFileManage.do"/>'" name="fileManage" class="button" value="文件管理" />
-			</dt>
-			<dt>		
-					<input type="button" onclick="window.location.href='<c:url value="/user/manage.do"/>'" name="userManage" class="button" value="用户管理" />
-			</dt>
+			<dd>
+				<input type="button" onclick="window.location.href='<c:url value="/login/doLogout.do"/>'" name="logout" class="button" value="注销" />	
+				<input type="button" onclick="window.location.href='<c:url value="/showFileManage.do"/>'" name="fileManage" class="button" value="文件管理" />
+			</dd>
+			<c:if test="${USER_CONTEXT.userName=='admin'}">
+			<dd>		
+				<input type="button" onclick="window.location.href='<c:url value="/admin.do"/>'" name="contenManage" class="button" value="内容管理" />	
+				<input type="button" onclick="window.location.href='<c:url value="/user/manage.do"/>'" name="userManage" class="button" value="用户管理" />
+			</dd>
+			</c:if>
 <%-- 				<a href="<c:url value="/login/doLogout.do"/>">注销</a> --%>
 <%-- 				<a href="<c:url value="/admin.do"/>">管理景区</a>管理景区 --%>
 			</dl>
@@ -75,11 +73,11 @@
 		</c:if>
 
         <!-- Search form -->                  
-        <h1>Search</h1>
+        <h1>搜索</h1>
         <div class="searchform">
           <form action="index.html" method="get">
             <fieldset>
-              <input name="field" class="field"  value=" Search..." />
+              <input name="field" class="field"  value=" 搜索..." />
               <input type="submit" name="button" class="button" value="GO!" />
             </fieldset>
           </form>
@@ -97,38 +95,27 @@
 	</dl>
 	</c:if>
 	
-	<!-- Text formats -->
-        <h1>Heading h1</h1>
-        <h2>Heading h2</h2>
-        <h3>Heading h3</h3>
+        <h1>员工之窗</h1>
+        <dl class="nav3-bullet">
+         <dt><a href="#">武汉市医疗保险常见问题解答 </a></dt>
+		 <dt><a href="#">邮科院补充医疗服务手册 </a></dt>
+		 <dt><a href="#">泰康人寿医保查询 </a></dt>
+		 <dt><a href="#">烽火班车线路 </a></dt>
+		 <dt><a href="#">公交查询 </a></dt>
+		 <dt><a href="#">烽火职工食堂菜谱 </a></dt>
+		 <dt><a href="#">集团电话查询 </a></dt>
+		</dl>
+		
+        <h1>内部链接</h1>
+        <dl class="nav3-bullet">
+          <dt><a href="#">综合办公信息服务平台 </a></dt>
+          <dt><a href="#">企业管理</a></dt>
+          <dt><a href="#">科技发展 </a></dt>
+          <dt><a href="#">财务管理</a></dt>
+          <dt><a href="#">发展策划</a></dt>
+          <dt><a href="#">人力资源</a></dt>
+          <dt><a href="#">工会</a></dt>                        
+        </dl>
 
-        <h3>Paragraph text</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-        <h3>Bulleted list</h3>
-        <ul>
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li>Fact 1</li>
-          <li>Fact 2</li>                            
-        </ul>
-
-        <h3>Ordered list</h3>
-        <ol>
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li>Fact 1</li>
-          <li>Fact 2</li>                           
-        </ol>
-
-        <h3>Text orientation</h3>
-        <p>Text left.</p>
-        <p class="center">Text center.</p>
-        <p class="right">Text right.</p>
-
-        <h3>Image<br />(text align left)</h3>
-        <p><img src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
-        <p><img class="center" src="./img/image.jpg" width="50" alt="Image description" title="Image title" /></p>
-        <p><img class="right" src="./img/image.jpg" width="50" alt="Image description" title="Image title" />Here is place for text.</p>
-	
+       
 </div>

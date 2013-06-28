@@ -50,7 +50,7 @@
 
 	<!-- 	A.2 HEADER MIDDLE -->
 	      <div class="header-middle" style="background-color:rgb(230,230,230) ;background-image:url(<%=request.getContextPath() %>/img/banner.gif);">    
-	       	Welcome ${USER_CONTEXT.userName}
+<%-- 	       	Welcome ${USER_CONTEXT.userName} --%>
 <!-- 	        <div class="sitemessage"> -->
 <!-- 	          <h1>EASY &bull; FLEXIBLE &bull; ROBUST</h1> -->
 <!-- 	          <h2>The third generation Multiflex is<br /> here, now with cooler design<br /> features and easier code.</h2> -->

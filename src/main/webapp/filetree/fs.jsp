@@ -12,9 +12,13 @@
 		
 		User user = (User) request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
 		String userName = user.getUserName();
-		String path = request.getServletContext().getRealPath(CommonConstant.UPLOAD_DIR+userName)+"\\";
-		path = path.replace("\\" , "/");
-		System.out.println(path);
+		String userPath = request.getServletContext().getRealPath(CommonConstant.UPLOAD_DIR+userName)+"\\";
+		userPath = userPath.replace("\\" , "/");
+		System.out.println(userPath);
+		
+		String sharePath = request.getServletContext().getRealPath(CommonConstant.UPLOAD_DIR+"share")+"\\";
+		sharePath = sharePath.replace("\\" , "/");
+		System.out.println(sharePath);
 	%>			
 	<%@ include file="/include/head4.jsp"%>
 		<style type="text/css">
@@ -50,7 +54,7 @@
 			}
 			
 			.demo {
-				width: 550px;
+				width: 265px;
 				height: 400px;
 				border-top: solid 1px #BBB;
 				border-left: solid 1px #BBB;
@@ -73,18 +77,31 @@
 			function openFile(file) {
 			    // do something with file
 			    alert(file);
-			    //window.open("<c:url value="/download.do"/>?filepath="+file);
-			    window.location.href="<c:url value="/download.do"/>?filepath="+file;
 			}
 			
 			function downloadFile(file) {
+			 	alert(file);
 				window.location.href="<c:url value="/downloadFile.do"/>?filepath="+file;			
 			}
 			
 			$(document).ready(function() {
 			
 				$('#fileTree').fileTree({
-					root : '<%=path%>',
+					root : '<%=userPath%>',
+					script : 'connectors/jqueryFileTree.jsp',
+					folderEvent : 'dblclick',
+					expandSpeed : 750,
+					collapseSpeed : 750,
+					expandEasing : 'easeOutBounce',
+					collapseEasing : 'easeOutBounce',
+					loadMessage : 'Loading...',
+					multiFolder : false
+				}, function(file) {
+					downloadFile(file);
+				});
+			
+				$('#shareFileTree').fileTree({
+					root : '<%=sharePath%>',
 					script : 'connectors/jqueryFileTree.jsp',
 					folderEvent : 'dblclick',
 					expandSpeed : 750,
@@ -107,7 +124,11 @@
 			<h1>用户文件列表</h1>
 			<div id="fileTree" class="demo"></div>
 		</div>
-				
+		
+		<div class="example">
+			<h1>共享文件列表</h1>
+			<div id="shareFileTree" class="demo"></div>
+		</div>	
 	</body>
 	
 </html>

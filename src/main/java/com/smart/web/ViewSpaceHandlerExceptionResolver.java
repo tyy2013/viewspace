@@ -10,7 +10,7 @@ public class ViewSpaceHandlerExceptionResolver extends
 		SimpleMappingExceptionResolver {
 	 protected ModelAndView doResolveException(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o, Exception e) {
 	        httpServletRequest.setAttribute("ex", e);
-	        e.printStackTrace();
+	        httpServletRequest.setAttribute("errorMsg",  e.getStackTrace().toString());
 	        return super.doResolveException(httpServletRequest, httpServletResponse, o, e);
 	    }
 }
