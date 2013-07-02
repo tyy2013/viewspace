@@ -28,7 +28,7 @@
     	
     	<table id="spacedg" class="easyui-datagrid" style="width:630;height:auto" 
     		title="管理空间" nowrap="false" fitColumns="false"
-    		url="<%=context%>/getViewSpaceList.do"
+    		url="<%=context%>/json/getViewSpaceList.do"
     		data-options="singleSelect:true,collapsible:true,toolbar:toolbar">
     	
 <!-- 			<tr><th colspan="4" ><div style="float: right"> -->
@@ -117,8 +117,8 @@ $('#spacedg').datagrid({
     nowrap:false,  
     fitColumns:false,
     singleSelect:true,collapsible:true,toolbar:toolbar,
-     url:'<%=context%>/getViewSpaceList.do' ,
-     columns:[[  
+
+    columns:[[  
         {field:'spaceId',title:'空间ID',width:50},  
         {field:'spaceName',title:'空间名',width:100,align:'right',sortable:true},  
         {field:'address',title:'地址',width:460,sortable:true}

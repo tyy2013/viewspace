@@ -34,7 +34,7 @@
 			
 			<div class="column1-unit">
 				<div id="uploadfile" class="contactform">
-				<form action="${context}/uploadFile.do" method="post" onsubmit="return mySubmit()" enctype="multipart/form-data" >
+				<form action="${context}/admin/uploadFile.do" method="post" onsubmit="return mySubmit()" enctype="multipart/form-data" >
 					<fieldset>
 					<legend>&nbsp;上传文件&nbsp;</legend>
 					
@@ -48,7 +48,7 @@
 							class="field" value="" tabindex="2" />
 					</p>
 					<p>	
-					<label>&nbsp;&nbsp;上传到公共文件夹:</label>
+					<label>&nbsp;&nbsp;&nbsp;上传到共享文件夹:</label>
 					<input type="checkbox" name="share" value="true">
 					</p>	
 					<p>

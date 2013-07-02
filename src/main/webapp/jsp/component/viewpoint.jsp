@@ -11,7 +11,7 @@
 	<div>${viewPoint.description}</div>
 	<c:if test="${!empty viewPoint.imgFile}">
 		<p>
-			<img width="100%" src="<c:url value="/uploads/${viewPoint.imgFile}"/>"
+			<img width="100%" src="<c:url value="/uploadimg/${viewPoint.imgFile}"/>"
 				alt="Image description" title="Image title" />
 		</p>
 	</c:if>

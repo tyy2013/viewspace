@@ -35,7 +35,7 @@
 				<div class="column1-unit">
 				<table id="userdg" class="easyui-datagrid" style="width:630;height:auto" 
 		    		nowrap="false" fitColumns="false" title=""
-		    		url="<%=context%>/user/getUserList.do"
+		    		url="<%=context%>/user/json//getUserList.do"
 		    		data-options="singleSelect:true,collapsible:true,toolbar:toolbar">
 		    		
 				</table>
@@ -91,7 +91,7 @@ $('#userdg').datagrid({
     nowrap:false,  
     fitColumns:false,
     singleSelect:true,collapsible:true,toolbar:toolbar,
-     columns:[[  
+    columns:[[  
         {field:'userId',title:'ID',width:50},  
         {field:'userName',title:'名称',width:100,align:'right',sortable:true},  
         {field:'lastIp',title:'地址',width:460,sortable:true}

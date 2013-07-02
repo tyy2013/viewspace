@@ -68,7 +68,7 @@ public class ViewManageController extends BaseController{
 	}
 	
 	// 获取用户管理的所有景区的列表
-	@RequestMapping(value = "/getViewSpaceList", method = RequestMethod.POST)
+	@RequestMapping(value = "/json/getViewSpaceList", method = RequestMethod.POST)
 	@ResponseBody
 	public Object getViewSpaceList(HttpServletRequest request) {
 		log.info("/getViewSpaceList");
@@ -100,7 +100,7 @@ public class ViewManageController extends BaseController{
 	
 
 	// 根据名称模糊查询景区
-	@RequestMapping(value = "/search",method=RequestMethod.PUT)
+	@RequestMapping(value = "/search",method=RequestMethod.POST)
 	public String queryViewSpaces(HttpServletRequest request) {
 		String spaceName = request.getParameter("spaceName");
 		List<ViewSpace> viewSpaces = viewSpaceService
@@ -329,12 +329,12 @@ public class ViewManageController extends BaseController{
 	}
 	
 	// 打开文件管理页面
-	@RequestMapping(value = "/showFileManage", method = RequestMethod.GET)
-	public String showFileManagePage() {
+	@RequestMapping(value = "/admin/shareFilePage", method = RequestMethod.GET)
+	public String showShareFilePage() {
 		return "/shareFile";
 	}
 		
-	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/uploadFile", method = RequestMethod.POST)
 	public String uploadFile(MultipartHttpServletRequest request,
 			@RequestParam("description") String description){
 		User user = getSessionUser(request);
@@ -374,11 +374,11 @@ public class ViewManageController extends BaseController{
 		}
 //		viewSpaceService.addViewPoint(vp);
 //        String targetUrl = "/vs/" + spaceId  + "/edit.do";
-        return "redirect:/showFileManage.do";
+        return "redirect:/admin/shareFilePage.do";
 	
 	}
 	
-	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/downloadFile", method = RequestMethod.GET)
 	public void downloadFile(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");//只对post中参数编码有效，而get中的参数是在URI中，默认为ISO-8859-1

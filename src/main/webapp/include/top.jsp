@@ -106,10 +106,10 @@
 
 		<!-- Search form -->
 		<div class="searchform">
-			<form action="#" method="get" class="form">
+			<form action="${context}/search.do" method="post" class="form">
 				<fieldset>
-					<input value=" Search..." name="field" class="field" /> <input
-						type="submit" value="GO!" name="button" class="button" />
+					<input value="搜索空间" name="spaceName" class="field" /> 
+					<input type="submit" value="GO!" name="button" class="button" />
 				</fieldset>
 			</form>
 		</div>

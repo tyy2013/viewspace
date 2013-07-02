@@ -72,11 +72,11 @@
 					<tr>
 						<td ><label for="img" class="left">要点图片：</label></td>
 						<td><img name="img"
-							src="<c:url value="/uploads/${viewPoint.imgFile}"/>"></img></td>
+							src="<c:url value="/uploadimg/${viewPoint.imgFile}"/>"></img></td>
 					</tr>
 				</c:if>
 					<tr>
-						<td><label for="imgFile" class="left">上传:</label></td>
+						<td><label for="imgFile" class="left">上传图片:</label></td>
 						<td ><input type="file" name="imgFile" class="field" tabindex="4"></td>
 					</tr>
 				

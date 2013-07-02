@@ -67,8 +67,8 @@
 			
 		</style>
 
-<!-- 		<script src="jquery.min.js" type="text/javascript"></script> -->
-<!-- 		<script src="jquery.easing.min.js" type="text/javascript"></script> -->
+		<script src="jquery.min.js" type="text/javascript"></script>
+		<script src="jquery.easing.min.js" type="text/javascript"></script>
 		<script src="jqueryFileTree.js" type="text/javascript"></script>
 		<link href="jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen" />
 		
@@ -81,7 +81,7 @@
 			
 			function downloadFile(file) {
 			 	alert(file);
-				window.location.href="<c:url value="/downloadFile.do"/>?filepath="+file;			
+				window.location.href="<c:url value="/admin/downloadFile.do"/>?filepath="+file;			
 			}
 			
 			$(document).ready(function() {

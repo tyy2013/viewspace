@@ -26,13 +26,13 @@ public class UserController extends BaseController{
 	protected static final Logger log = Logger.getLogger(UserController.class);
 	
 	// 打开用户管理页面
-	@RequestMapping(value = "/manage", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String userManagePage() {
 		return "/userManage";
 	}
 	
 	// 获取所有用户的列表
-	@RequestMapping(value = "/getUserList")
+	@RequestMapping(value = "/json/getUserList")
 	@ResponseBody
 	public Object getUserList(HttpServletRequest request) {
 		log.info("/user/getUserList");
@@ -49,7 +49,7 @@ public class UserController extends BaseController{
 	public String saveUser(HttpServletRequest request, User user) {
 		log.info("/saveUser");
 		userService.addUser(user);
-		return "redirect:"+"/user/manage.do";
+		return "redirect:"+"/user/admin.do";
 	}
 	
 	@RequestMapping(value = "/{id}/edit")
@@ -65,13 +65,13 @@ public class UserController extends BaseController{
 		log.info("/updateUser");
 		user.setUserId(id);
 		userService.updateUser(user);
-		return "redirect:"+"/user/manage.do";
+		return "redirect:"+"/user/admin.do";
 	}
 	
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable Integer id) {
 		log.info("/deleteUser");		
 		userService.deleteUser(id);
-		return "redirect:"+"/user/manage.do";
+		return "redirect:"+"/user/admin.do";
 	}
 }

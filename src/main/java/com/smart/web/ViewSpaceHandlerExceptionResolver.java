@@ -1,5 +1,8 @@
 package com.smart.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
@@ -8,9 +11,8 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  */
 public class ViewSpaceHandlerExceptionResolver extends
 		SimpleMappingExceptionResolver {
-	 protected ModelAndView doResolveException(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o, Exception e) {
-	        httpServletRequest.setAttribute("ex", e);
-	        httpServletRequest.setAttribute("errorMsg",  e.getStackTrace().toString());
+	 protected ModelAndView doResolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+	        httpServletRequest.setAttribute("errorMsg",  e.getMessage());
 	        return super.doResolveException(httpServletRequest, httpServletResponse, o, e);
 	    }
 }

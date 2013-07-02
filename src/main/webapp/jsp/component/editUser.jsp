@@ -25,7 +25,7 @@
 				</tr>
 				<tr>
 					<td><label for="password" class="left">密码:</label> </td>
-					<td><input type="text" name="password" value="${user.password}"
+					<td><input type="password" name="password" value="${user.password}"
 						class="field" tabindex="2" /></td>
 				</tr>
 
