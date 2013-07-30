@@ -343,7 +343,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.1</version>
 				<configuration>
-					<url>http://10.9.2.125:8080/manager/html</url>
+					<url>http://10.9.2.129:8080/manager/html</url>
 					<server>tomcat</server>
 				</configuration>
 			</plugin>
