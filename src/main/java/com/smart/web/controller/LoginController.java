@@ -26,46 +26,46 @@ import com.smart.domain.User;
 @Controller
 @RequestMapping("/login")
 public class LoginController extends BaseController {
-	/**
-	 * 自动注入
-	 */
-	@Autowired
-	private UserService userService;
+    /**
+     * 自动注入
+     */
+    @Autowired
+    private UserService userService;
 
-	/**
-	 * 用户登录
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+    /**
+     * 用户登录
+     * @param mapping
+     * @param form
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value="/doLogin",method = RequestMethod.POST)
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
-		String userName = request.getParameter("userName");
-		String password = request.getParameter("password");
-		User user = userService.findUserByUserName(userName);
-		if (user == null) {
-			request.setAttribute("errorMsg", "用户名不存在");
-			return new ModelAndView("forward:/login.jsp");
-		} else if (!user.getPassword().equals(password)) {
-			request.setAttribute("errorMsg", "用户密码不正确");
-			return new ModelAndView("forward:/login.jsp");
-		} else {
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        User user = userService.findUserByUserName(userName);
+        if (user == null) {
+            request.setAttribute("errorMsg", "用户名不存在");
+            return new ModelAndView("redirect:/index.do");
+        } else if (!user.getPassword().equals(password)) {
+            request.setAttribute("errorMsg", "用户密码不正确");
+            return new ModelAndView("redirect:/index.do");
+        } else {
             user.setLastIp(request.getLocalAddr());
             user.setLastVisit(new Date());
             userService.saveLoginInfo(user);
-			setSessionUser(request,user);
-			String toUrl=(String) request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
-			if(toUrl!=null)
-				return new ModelAndView("redirect:"+toUrl);
-			//return new ModelAndView("success");
-			else{
-				return new ModelAndView("redirect:/index.do");
-			}
+            setSessionUser(request,user);
+            String toUrl=(String) request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
+            if(toUrl!=null)
+                return new ModelAndView("redirect:"+toUrl);
+            //return new ModelAndView("success");
+            else{
+                return new ModelAndView("redirect:/index.do");
+            }
 
-		}
-	}
+        }
+    }
 
     /**
      *登录注销

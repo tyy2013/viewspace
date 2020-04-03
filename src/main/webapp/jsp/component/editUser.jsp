@@ -11,8 +11,7 @@
 
 		<form method="post"	action="${context}/user/
 			<c:if test="${!empty user}">${user.userId}/update.do</c:if>
-			<c:if test="${empty user}">save.do</c:if>
-			"
+			<c:if test="${empty user}">save.do</c:if>"
 			onsubmit="return mySubmit()">
 			<fieldset>
 				<legend>&nbsp;${user.userName} 信息&nbsp;</legend>

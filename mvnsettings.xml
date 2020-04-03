@@ -26,7 +26,8 @@
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 	<!-- localRepository | The path to the local repository maven will use to 
 		store artifacts. | | Default: ~/.m2/repository -->
-	<localRepository>G:\apache-maven-3.0.5\.m2\repository</localRepository>
+	<localRepository>G:\apache-maven-3.5.4\.m2\repository</localRepository>
+<!-- 	<localRepository>~/.m2/repository</localRepository> -->
 
 
 	<!-- interactiveMode | This will determine whether maven prompts you when 
@@ -112,7 +113,12 @@
 			<id>mirrorId</id> <mirrorOf>repositoryId</mirrorOf> <name>Human Readable 
 			Name for this Mirror.</name> <url>http://my.repository.com/repo/path</url> 
 			</mirror> -->  
-
+			<mirror>
+              <!--This sends everything else to /public -->
+              <id>nexus</id>
+              <mirrorOf>*</mirrorOf>
+              <url>http://localhost:8081/nexus/content/groups/public</url>
+            </mirror>
 
 	</mirrors>
 
@@ -354,8 +360,8 @@
 	<activeProfiles>
 		<activeProfile>development</activeProfile>  
 		<!-- <activeProfile>jboss-public-repository</activeProfile> -->
-<!-- 		<activeProfile>repo.springsource.org</activeProfile> -->
-<!-- 		<activeProfile>repository-apache-org</activeProfile> -->
+		<activeProfile>repo.springsource.org</activeProfile>
+		<activeProfile>repository-apache-org</activeProfile>
 		<!-- <activeProfile>redhat-techpreview-all-repository</activeProfile> -->
 		<!-- <activeProfile>com-springsource-repository-bundles-external</activeProfile> -->
 	</activeProfiles>

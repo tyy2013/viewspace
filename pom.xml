@@ -9,9 +9,13 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<file.encoding>UTF-8</file.encoding>
-		<java.version>1.6</java.version>
-
-		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        
+        <junit.version>4.11</junit.version>
+		<spring.version>4.3.24.RELEASE</spring.version>
 		<mysql.version>5.1.6</mysql.version>
 		<commons-dbcp.version>1.2.2</commons-dbcp.version>
 		<aspectjweaver.version>1.6.9</aspectjweaver.version>
@@ -26,32 +30,104 @@
 		<freemarker.version>2.3.8</freemarker.version>
 
 		<unitils.version>3.1</unitils.version>
-
+ 		<jackson.version>2.9.8</jackson.version>
 	</properties>
+	
+<profiles>
+	<profile>
+		<id>dev</id>
+		<properties>
+			<mysql.url>http://localhost:3306</mysql.url>
+		</properties>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+	</profile>
+	<profile>
+		<id>prod</id>
+		<properties>
+			<mysql.url>http://192.168.1.10:3306</mysql.url>
+		</properties>
+	</profile>
+</profiles>
 
 	<dependencies>
-		<!--① 依赖的Spring模块类库 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
+	<!--spring 常用模块依赖 start-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
-		<dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${spring.version}</version>
 		</dependency>
+
+        <!-- spring 常用模块依赖 end -->
+
+	
+		<!--① 依赖的Spring模块类库 -->
 
 
 		<!--② 依赖的持久化类库 -->
@@ -65,16 +141,13 @@
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<version>1.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache-core</artifactId>
-			<version>2.4.3</version>
-		</dependency>
+				
+		 <!-- ehcache 相关依赖  -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.8.2</version>
+        </dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
@@ -89,6 +162,18 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm-all</artifactId>
+			<version>2.1</version>
 		</dependency>
 
 
@@ -187,7 +272,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
-			<version>${org.springframework.version}</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -195,7 +280,32 @@
 			<version>1.8.2</version>
 			<scope>test</scope>
 		</dependency>
-
+		
+		<!--日志 start-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+        <!--日志end-->
+        
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -245,8 +355,6 @@
 			<version>2.4.8</version>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -263,6 +371,27 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		
+		<!-- jackson json转换配置，配置-->
+       <!-- 这个配置对应 RequestParams, RequestBody, ResponseBody 等注解，原始请求参数其实都在 HttpServletRequest 对象里，
+         但实际上我们用spring的时候可以直接在controller方法参数里得到请求数据，String，Integer， Map, List 和自定义bean
+         这个转换就要用到这个包， 不引入这个包，使用RequestBody注解就会报错-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
 	</dependencies>
 	
@@ -330,20 +459,20 @@
 	        <plugin>  
 	            <groupId>org.apache.maven.plugins</groupId>  
 	            <artifactId>maven-compiler-plugin</artifactId>  
-	            <version>2.3.2</version>  
+	            <version>3.8.0</version>  
 	            <configuration>  
-	                <source>1.6</source>  
-	                <target>1.6</target>  
+	                <source>${maven.compiler.source}</source>  
+	                <target>${maven.compiler.target}</target>  
 	            </configuration>  
 	        </plugin>  
 
 			<!-- tomcat插件 -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
+				<artifactId>tomcat8-maven-plugin</artifactId>
+				<version>3.0</version>
 				<configuration>
-					<url>http://10.9.2.129:8080/manager/html</url>
+					<url>http://localhost:8888/manager/html</url>
 					<server>tomcat</server>
 				</configuration>
 			</plugin>

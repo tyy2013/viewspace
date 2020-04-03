@@ -67,7 +67,7 @@
 			<h1 class="block" >下载文件</h1>
 			<div class="column1-unit">
 				<div id="filetree">
-					<iframe src="<c:url value="/filetree/fs.jsp"/>"   name="mainFrame" frameborder="0" marginheight="1" marginwidth="1" height="500" width="100%"></iframe>
+					<iframe src="<c:url value="/jsp/filetree/fs.jsp"/>"   name="mainFrame" frameborder="0" marginheight="1" marginwidth="1" height="500" width="100%"></iframe>
 				</div>
 			</div>
 			<hr class="clear-contentunit">

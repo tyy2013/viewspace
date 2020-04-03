@@ -136,24 +136,24 @@
 			
         <h1>员工之窗</h1>
         <dl class="nav3-bullet">
-         <dt><a href="#">武汉市医疗保险常见问题解答 </a></dt>
-		 <dt><a href="#">邮科院补充医疗服务手册 </a></dt>
-		 <dt><a href="#">泰康人寿医保查询 </a></dt>
-		 <dt><a href="#">烽火班车线路 </a></dt>
-		 <dt><a href="#">公交查询 </a></dt>
-		 <dt><a href="#">烽火职工食堂菜谱 </a></dt>
-		 <dt><a href="#">集团电话查询 </a></dt>
+         <dt><a href="http://intra.wri.com.cn/news/shownews.asp?newsid=2141">武汉市医疗保险常见问题 </a></dt>
+		 <dt><a href="http://intra.wri.com.cn/file/%E9%82%AE%E7%A7%91%E9%99%A2%E6%9C%8D%E5%8A%A1%E6%89%8B%E5%86%8C6.11.doc">邮科院补充医疗服务手册 </a></dt>
+		 <dt><a href="http://cs.taikang.com:2008/qrybonus/Pages/index.jsp">泰康人寿医保查询 </a></dt>
+		 <dt><a href="http://intra.wri.com.cn/news/shownews.asp?newsid=4076">烽火班车线路 </a></dt>
+		 <dt><a href="http://www.wuhanbus.com/Services/Line/LineList.aspx">公交查询 </a></dt>
+		 <dt><a href="http://intra.wri.com.cn/file/recipe.xls">烽火职工食堂菜谱 </a></dt>
+		 <dt><a href="http://intra.wri.com.cn/member/index.asp">集团电话查询 </a></dt>
 		</dl>
 		
         <h1>内部链接</h1>
         <dl class="nav3-bullet">
-          <dt><a href="#">综合办公信息服务平台 </a></dt>
-          <dt><a href="#">企业管理</a></dt>
-          <dt><a href="#">科技发展 </a></dt>
-          <dt><a href="#">财务管理</a></dt>
-          <dt><a href="#">发展策划</a></dt>
-          <dt><a href="#">人力资源</a></dt>
-          <dt><a href="#">工会</a></dt>                        
+          <dt><a href="http://intra.wri.com.cn/yb/">综合办公信息服务平台 </a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/qygl/index.htm">企业管理</a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/kejifz/kejifz.asp">科技发展 </a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/cw.asp">财务管理</a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/fz.asp">发展策划</a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/HR.asp">人力资源</a></dt>
+          <dt><a href="http://intra.wri.com.cn/department/HR.asp">工会</a></dt>                        
         </dl>
 
 <script language="JavaScript" type="text/javascript">
